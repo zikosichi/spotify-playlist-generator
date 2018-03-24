@@ -13,7 +13,7 @@ class Tabs extends React.Component {
   render() {
     const tabs = this.props.tabItems.map((tab, index) =>
       <li className={"tab-item " + (this.props.selectedIndex === index && 'tab-item--active')}
-        key={tab.alias}>
+        key={tab.type}>
         {tab.title}
       </li>
     );
@@ -32,7 +32,7 @@ Tabs.propTypes = {
   tabItems: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      alias: PropTypes.string
+      type: PropTypes.string
     })
   ),
   selectedIndex: PropTypes.number

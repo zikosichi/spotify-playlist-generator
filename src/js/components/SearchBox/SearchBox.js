@@ -3,6 +3,10 @@ import React from 'react';
 // Components
 import SearchBar from 'components/SearchBox/SearchBar/SearchBar'
 import Tabs from 'components/Tabs/Tabs'
+import ResultsList from 'components/SearchBox/ResultsList/ResultsList'
+
+// Styles
+import './search-box.scss'
 
 class SearchBox extends React.Component {
   constructor(props) {
@@ -11,15 +15,23 @@ class SearchBox extends React.Component {
   }
   render() {
     const tabItems = [
-      { title: 'Tracks', alias: 'track' },
-      { title: 'Artists', alias: 'artist' },
-      { title: 'Albums', alias: 'album' }
+      { title: 'Tracks', type: 'track' },
+      { title: 'Artists', type: 'artist' },
+      { title: 'Albums', type: 'album' }
     ]
 
     return (
       <div>
         <SearchBar></SearchBar>
-        <Tabs tabItems={tabItems} />
+        <div className="search-result">
+          <div className="search-result__header">
+            <Tabs tabItems={tabItems} />
+          </div>
+          <div className="search-result__content">
+            <ResultsList />
+          </div>
+        </div>
+
       </div>
     )
   }
