@@ -4,9 +4,20 @@ import ResultItem from './ResultItem/ResultItem'
 import './results-list.scss'
 
 class ResultsList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleShowMore = this.handleShowMore.bind(this)
+  }
+
+  // On show more click
+  handleShowMore(e) {
+    this.props.onShowMore(this.props.resultItems.next)
+  }
+
   render() {
     const loadMore = (
-      <div className="show-more">
+      <div className="show-more"
+        onClick={this.handleShowMore}>
         Show More...
       </div>
     )
@@ -14,11 +25,11 @@ class ResultsList extends React.Component {
     return (
       <div>
         <div className="results-list">
-          {this.props.data.items && this.props.data.items.map((tab) =>
+          {this.props.resultItems && this.props.resultItems.map((tab) =>
             <ResultItem key={tab.id} />
           )}
         </div>
-        {this.props.data.next && loadMore}
+        {this.props.showLoadMore && loadMore}
       </div>
     )
   }
@@ -27,5 +38,7 @@ class ResultsList extends React.Component {
 export default ResultsList;
 
 ResultsList.propTypes = {
-  data: PropTypes.object
+  resultItems: PropTypes.array,
+  showLoadMore: PropTypes.bool,
+  onShowMore: PropTypes.func
 }
