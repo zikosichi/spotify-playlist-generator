@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Assets
 import searchIcon from '../../../assets/icons/search-icon.svg';
 
 // Styles
