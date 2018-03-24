@@ -1,7 +1,9 @@
+@import './variables';
+
 body {
-    font-family: sans-serif;
-    background: #00b2f3;
-    color: white;
-    text-align: center;
-    padding-top: 100px;
+  font-family: sans-serif;
+  background: $ts-light;
+  color: $ts-dark;
+  text-align: center;
+  padding-top: 100px;
 }
