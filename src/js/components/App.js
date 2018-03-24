@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import spotifyApi from 'utils/spotify'
+import { hot } from 'react-hot-loader'
 
 // Components
 import SearchBox from 'components/SearchBox/SearchBox'
@@ -14,4 +15,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default hot(module)(App)

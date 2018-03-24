@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "TicketSwap assessment",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --hot",
     "build": "webpack && serv --path='./dist' --port='1337'"
   },
   "dependencies": {
@@ -11,6 +11,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-hot-loader": "^4.0.0",
     "serv": "^0.2.4",
     "spotify-web-api-js": "^0.22.1"
   },

@@ -11,6 +11,7 @@
           "utils": "/utils",
           "config": "/config"
       }
-    }]
+    }],
+    "react-hot-loader/babel"
   ]
 }
