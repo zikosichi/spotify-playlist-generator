@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import axios from 'axios'
 
 // Components
 import SearchBar from './SearchBar/SearchBar'
@@ -35,6 +36,7 @@ class SearchBox extends React.Component {
     this.setState({
       searchString: e
     })
+    this.performSearch()
   }
 
   // On tab change
@@ -42,6 +44,27 @@ class SearchBox extends React.Component {
     this.setState({
       selectedTabIndex: e
     })
+    this.performSearch()
+  }
+
+  performSearch() {
+    const q = this.state.searchString;
+    const type = this.tabItems[this.state.selectedTabIndex].type
+
+    axios.get(`https://api.spotify.com/v1/search?q=Musea&type=track`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // axios.get(`https://api.spotify.com/v1/search?q=${q}&type=${type}`)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   render() {
@@ -52,7 +75,7 @@ class SearchBox extends React.Component {
           <div className="search-result__header">
             <Tabs tabItems={this.tabItems}
               selectedIndex={this.state.selectedTabIndex}
-              onTabSelect={this.handleTabChange}/>
+              onTabSelect={this.handleTabChange} />
           </div>
           <div className="search-result__content">
             <ResultsList />
