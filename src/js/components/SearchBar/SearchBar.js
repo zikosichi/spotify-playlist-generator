@@ -18,6 +18,7 @@ class SearchBar extends React.Component {
             </span>
           </div>
           <input type="text"
+            placeholder="Search for a song, album or artist"
             className="form-control search-bar__input" />
         </div>
         <button type="submit"

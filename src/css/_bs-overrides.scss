@@ -5,6 +5,11 @@
   &:focus {
     box-shadow: none;
   }
+
+  &::-webkit-input-placeholder {
+    color: lighten($ts-gray, 15%);
+    font-weight: 200;
+  }
 }
 
 // Buttons
