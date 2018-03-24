@@ -11,8 +11,16 @@ import './search-box.scss'
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    // this.state = { searchString: '' }
+
+    // Bind events
+    this.handleSearch = this.handleSearch.bind(this);
   }
+
+  handleSearch(e) {
+    console.log(e);
+  }
+
   render() {
     const tabItems = [
       { title: 'Tracks', type: 'track' },
@@ -22,7 +30,7 @@ class SearchBox extends React.Component {
 
     return (
       <div>
-        <SearchBar></SearchBar>
+        <SearchBar onSearch={this.handleSearch} />
         <div className="search-result">
           <div className="search-result__header">
             <Tabs tabItems={tabItems} />
