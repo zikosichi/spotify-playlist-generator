@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Assets
-import searchIcon from '../../../assets/icons/search-icon.svg';
+import searchIcon from '../../../../assets/icons/search-icon.svg';
 
 // Styles
 import './search-bar.scss';

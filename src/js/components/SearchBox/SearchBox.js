@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import SearchBar from 'components/SearchBar/SearchBar'
+import SearchBar from 'components/SearchBox/SearchBar/SearchBar'
 import Tabs from 'components/Tabs/Tabs'
 
 class SearchBox extends React.Component {
