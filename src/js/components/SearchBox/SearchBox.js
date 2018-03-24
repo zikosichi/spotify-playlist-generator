@@ -10,10 +10,16 @@ class SearchBox extends React.Component {
     this.state = {}
   }
   render() {
+    const tabItems = [
+      { title: 'Tracks', alias: 'track' },
+      { title: 'Artists', alias: 'artist' },
+      { title: 'Albums', alias: 'album' }
+    ]
+
     return (
       <div>
         <SearchBar></SearchBar>
-        <Tabs />
+        <Tabs tabItems={tabItems} />
       </div>
     )
   }

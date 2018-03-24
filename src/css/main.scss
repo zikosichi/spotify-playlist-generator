@@ -8,3 +8,9 @@ body {
   color: $ts-dark;
   padding-top: 100px;
 }
+
+a {
+  &:focus {
+    text-decoration: none;
+  }
+}

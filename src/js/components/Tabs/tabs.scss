@@ -1,0 +1,23 @@
+@import '../../../css/variables';
+
+.tabs {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.tab-item {
+  text-transform: uppercase;
+  color: $ts-gray;
+  font-weight: 200;
+  padding: 0 10px;
+  cursor: pointer;
+
+  &--active {
+    color: $ts-blue;
+  }
+
+  &:hover:not(.tab-item--active) {
+    color: $ts-gray - 20;
+  }
+}
