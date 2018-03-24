@@ -1,0 +1,37 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// Components
+import ResultAvatar from './ResultAvatar/ResultAvatar';
+
+// Styles
+import './result-item.scss';
+
+class ResultItem extends React.Component {
+  render() {
+    return (
+      <div className="result">
+        <ResultAvatar />
+        <div className="result__content">
+          <p className="result__content__sub-title">
+            Sub Title
+          </p>
+          <h3 className="result__content__title">
+            Madonna
+          </h3>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default ResultItem;
+
+ResultItem.propTypes = {
+  resultItem: PropTypes.shape({
+    title: PropTypes.string,
+    subTitle: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    previewUrl: PropTypes.string
+  })
+};

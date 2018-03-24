@@ -1,11 +1,14 @@
 import React from 'react';
+import ResultItem from './ResultItem/ResultItem';
 
 class ResultsList extends React.Component {
-
   render() {
     return (
       <div>
-        Results
+        <ResultItem />
+        <ResultItem />
+        <ResultItem />
+        <ResultItem />
       </div>
     )
   }

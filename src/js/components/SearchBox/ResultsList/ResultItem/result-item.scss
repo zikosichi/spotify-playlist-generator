@@ -1,0 +1,33 @@
+@import '../../../../../css/variables';
+
+.result {
+  display: flex;
+  padding: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+
+    &__sub-title {
+      color: $ts-gray + 20;
+      font-weight: 300;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    &__title {
+      color: $ts-blue;
+      margin-bottom: 0;
+      font-size: 24px;
+    }
+  }
+
+  &:hover {
+    background-color: rgba($ts-light-gray, .2);
+  }
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 
 // Components
-import SearchBar from 'components/SearchBox/SearchBar/SearchBar'
-import Tabs from 'components/Tabs/Tabs'
-import ResultsList from 'components/SearchBox/ResultsList/ResultsList'
+import SearchBar from './SearchBar/SearchBar'
+import Tabs from '../Tabs/Tabs'
+import ResultsList from './ResultsList/ResultsList'
 
 // Styles
 import './search-box.scss'
