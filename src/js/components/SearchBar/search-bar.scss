@@ -1,0 +1,27 @@
+@import '../../../css/variables';
+
+.search-bar {
+  &__input-group {
+    background-color: $ts-white;
+    box-shadow: 0 1px 1px 0 rgba($ts-dark, 0.16);
+    border-radius: 4px;
+
+    .input-group-text {
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  &__input {
+    border: none;
+    font-size: 18px;
+    padding: 15px 20px;
+    padding-left: 0;
+  }
+
+  &__btn {
+    border: none;
+    padding: 10px;
+    width: 141px;
+  }
+}

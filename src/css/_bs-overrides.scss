@@ -1,0 +1,15 @@
+@import './variables';
+
+// Form control
+.form-control {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+// Buttons
+.btn {
+  &.btn-success {
+    background-color: $ts-green;
+  }
+}

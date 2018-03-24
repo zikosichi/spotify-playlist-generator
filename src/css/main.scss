@@ -1,6 +1,8 @@
 @import './variables';
 
 body {
+  @import './bs-overrides';
+
   font-family: sans-serif;
   background: $ts-light;
   color: $ts-dark;
