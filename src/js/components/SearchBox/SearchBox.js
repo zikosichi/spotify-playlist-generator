@@ -23,7 +23,8 @@ class SearchBox extends React.Component {
     // Init state
     this.state = {
       searchString: '',
-      selectedTabIndex: 0
+      selectedTabIndex: 0,
+      searchResult: {}
     }
 
     // Bind events
@@ -35,36 +36,36 @@ class SearchBox extends React.Component {
   handleSearch(e) {
     this.setState({
       searchString: e
+    }, () => {
+      this.performSearch()
     })
-    this.performSearch()
   }
 
   // On tab change
   handleTabChange(e) {
     this.setState({
       selectedTabIndex: e
+    }, () => {
+      this.performSearch()
     })
-    this.performSearch()
   }
 
+  // Perform API call
   performSearch() {
     const q = this.state.searchString;
     const type = this.tabItems[this.state.selectedTabIndex].type
+    const limit = 5
 
-    axios.get(`https://api.spotify.com/v1/search?q=Musea&type=track`)
-      .then((response) => {
-        console.log(response);
+    axios.get(`https://api.spotify.com/v1/search?q=${q}&type=${type}&limit=${limit}`)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          searchResult: res.data[type + 's']
+        })
       })
       .catch((error) => {
         console.log(error);
       });
-    // axios.get(`https://api.spotify.com/v1/search?q=${q}&type=${type}`)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
 
   render() {
@@ -78,7 +79,7 @@ class SearchBox extends React.Component {
               onTabSelect={this.handleTabChange} />
           </div>
           <div className="search-result__content">
-            <ResultsList />
+            <ResultsList data={this.state.searchResult} />
           </div>
         </div>
 
