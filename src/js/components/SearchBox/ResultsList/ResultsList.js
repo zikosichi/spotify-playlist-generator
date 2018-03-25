@@ -59,8 +59,8 @@ class ResultsList extends React.Component {
 export default ResultsList;
 
 ResultsList.propTypes = {
-  type: PropTypes.string,
-  resultItems: PropTypes.array,
+  type: PropTypes.string.isRequired,
+  resultItems: PropTypes.array.isRequired,
   showLoadMore: PropTypes.bool,
   onShowMore: PropTypes.func
 }

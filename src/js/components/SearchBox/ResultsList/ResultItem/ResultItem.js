@@ -31,9 +31,9 @@ class ResultItem extends React.Component {
 export default ResultItem;
 
 ResultItem.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
   avatarUrl: PropTypes.string,
-  type: PropTypes.string,
   previewUrl: PropTypes.string
 };
