@@ -20,7 +20,7 @@ if (window.location.hash) {
     expires
   })
 
-  history.replaceState('', document.title, window.location.pathname);
+  history.replaceState({}, document.title, window.location.pathname);
 }
 
 const spotifyApi = new SpotifyApi()
