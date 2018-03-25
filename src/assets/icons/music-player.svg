@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>music-player</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="music-player">
+            <rect id="Rectangle" fill="#D8D8D8" x="0" y="0" width="52" height="52"></rect>
+            <path d="M42.66,8.106 C42.443,7.917 42.154,7.827 41.871,7.866 L19.871,10.722 C19.373,10.787 19,11.211 19,11.714 L19,16 L19,19 L19,35.737 C17.629,34.409 15.674,33.572 13.5,33.572 C9.364,33.572 6,36.585 6,40.287 C6,43.989 9.364,47 13.5,47 C17.636,47 21,43.988 21,40.286 L21,19.878 L41,17.28 L41,29.289 C39.643,27.972 37.715,27.143 35.571,27.143 C31.475,27.143 28.143,30.156 28.143,33.858 C28.143,37.56 31.476,40.572 35.571,40.572 C39.667,40.572 43,37.56 43,33.858 L43,16.143 L43,13.143 L43,8.857 C43,8.569 42.876,8.296 42.66,8.106 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>
