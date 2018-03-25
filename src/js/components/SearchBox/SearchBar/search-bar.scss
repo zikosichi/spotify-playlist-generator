@@ -12,6 +12,17 @@
     }
   }
 
+  &__clear {
+    cursor: pointer;
+    padding-left: 7px;
+    padding-right: 7px;
+
+    &__img {
+      height: 15px;
+    }
+  }
+
+
   &__input {
     border: none;
     font-size: 18px;

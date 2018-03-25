@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Assets
 import searchIcon from '../../../../assets/icons/search-icon.svg';
+import closeIcon from '../../../../assets/icons/close.svg';
 
 // Styles
 import './search-bar.scss';
@@ -15,6 +16,7 @@ class SearchBar extends React.Component {
     // Bind events
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   // On form submit
@@ -30,7 +32,25 @@ class SearchBar extends React.Component {
     })
   }
 
+  // On clear button click
+  handleClear(e) {
+    this.setState({
+      searchString: ''
+    })
+    this.props.onSearch('');
+  }
+
   render() {
+    const clearBtn = (
+      <div className="input-group-append search-bar__clear"
+        onClick={this.handleClear}>
+        <span className="input-group-text">
+          <img src={closeIcon}
+            className="search-bar__clear__img" />
+        </span>
+      </div>
+    )
+
     return (
       <form className="d-flex search-bar"
         onSubmit={this.handleSubmit}>
@@ -46,6 +66,7 @@ class SearchBar extends React.Component {
             value={this.state.searchString}
             onChange={this.handleChange}
           />
+          {this.state.searchString && clearBtn}
         </div>
         <button type="submit"
           className="btn btn-success ml-3 search-bar__btn">
