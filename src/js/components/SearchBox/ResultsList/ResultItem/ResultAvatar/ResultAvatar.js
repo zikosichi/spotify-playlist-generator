@@ -6,7 +6,7 @@ import './result-avatar.scss';
 class ResultsAvatar extends React.Component {
   render() {
     return (
-      <div className="avatar-box">
+      <div className={'avatar-box ' + (this.props.previewUrl ? 'avatar-box--round' : '')}>
         <img src={this.props.avatarUrl || micIcon}
              className="avatar"/>
       </div>
@@ -17,5 +17,6 @@ class ResultsAvatar extends React.Component {
 export default ResultsAvatar;
 
 ResultsAvatar.propTypes = {
-  avatarUrl: PropTypes.string
+  avatarUrl: PropTypes.string,
+  previewUrl: PropTypes.string
 };

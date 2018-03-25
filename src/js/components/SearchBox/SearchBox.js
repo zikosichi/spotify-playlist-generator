@@ -53,7 +53,7 @@ class SearchBox extends React.Component {
     })
   }
 
-  // On tab change
+  // On show more
   handleShowMore(e) {
     this.performSearch(this.state.nextUrl, true)
   }
@@ -65,8 +65,8 @@ class SearchBox extends React.Component {
    * for making the call
    *
    * @param {boolean} [append=false]
-   * If append is true it will append res to resultItems
-   * the results instead of replacing it with new array
+   * If append is true it will append result to
+   * resultItems instead of replacing it with new array
    */
   performSearch(url, append = false) {
     if (!this.state.searchString) {
@@ -88,6 +88,9 @@ class SearchBox extends React.Component {
     axios.get(url)
       .then((res) => {
         const items = res.data[type + 's'].items;
+
+        console.log(items);
+
         this.setState((prevState) => {
           return {
             resultItems: append ? [...prevState.resultItems, ...items] : items,

@@ -32,16 +32,18 @@ class ResultsList extends React.Component {
       <div>
         <div className="results-list">
           {this.props.resultItems && this.props.resultItems.map((item) => {
-            const images = this.props.type === 'track' ?
-            item.album ? item.album.images : null : item.images
 
+            const images = this.props.type === 'track' ?
+              item.album ? item.album.images : null : item.images
             const avatarUrl = images && images[0] ? images[0].url : ''
+            const previewUrl = item.preview_url || null;
 
             return (
               <ResultItem key={item.id}
                 title={item.name}
                 subTitle={item.album ? item.album.name : this.props.type}
                 avatarUrl={avatarUrl}
+                previewUrl={previewUrl}
                 />
             )
           }

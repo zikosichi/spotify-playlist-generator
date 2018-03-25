@@ -11,7 +11,8 @@ class ResultItem extends React.Component {
   render() {
     return (
       <div className="result">
-        <ResultAvatar avatarUrl={this.props.avatarUrl} />
+        <ResultAvatar avatarUrl={this.props.avatarUrl}
+          previewUrl={this.props.previewUrl}/>
         <div className="result__content">
           <p className="result__content__sub-title">
             {this.props.subTitle}
