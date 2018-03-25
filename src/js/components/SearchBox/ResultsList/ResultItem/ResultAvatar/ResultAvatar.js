@@ -38,7 +38,7 @@ class ResultsAvatar extends React.Component {
     )
 
     return (
-      <div className={'avatar-box ' + (this.props.previewUrl ? 'avatar-box--round' : '')}>
+      <div className={'avatar-box ' + (this.props.type === 'track' ? 'avatar-box--round' : '')}>
         <img src={this.props.avatarUrl || micIcon}
           className="avatar" />
         {this.props.previewUrl && playBtn}
@@ -51,5 +51,6 @@ export default ResultsAvatar;
 
 ResultsAvatar.propTypes = {
   avatarUrl: PropTypes.string,
-  previewUrl: PropTypes.string
+  previewUrl: PropTypes.string,
+  type: PropTypes.string
 };

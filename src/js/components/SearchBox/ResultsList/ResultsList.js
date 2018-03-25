@@ -44,6 +44,7 @@ class ResultsList extends React.Component {
                 subTitle={item.album ? item.album.name : this.props.type}
                 avatarUrl={avatarUrl}
                 previewUrl={previewUrl}
+                type={this.props.type}
                 />
             )
           }

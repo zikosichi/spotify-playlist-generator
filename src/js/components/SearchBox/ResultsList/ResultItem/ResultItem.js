@@ -12,7 +12,9 @@ class ResultItem extends React.Component {
     return (
       <div className="result">
         <ResultAvatar avatarUrl={this.props.avatarUrl}
-          previewUrl={this.props.previewUrl}/>
+          previewUrl={this.props.previewUrl}
+          type={this.props.type}
+          />
         <div className="result__content">
           <p className="result__content__sub-title">
             {this.props.subTitle}
@@ -32,5 +34,6 @@ ResultItem.propTypes = {
   title: PropTypes.string,
   subTitle: PropTypes.string,
   avatarUrl: PropTypes.string,
+  type: PropTypes.string,
   previewUrl: PropTypes.string
 };
