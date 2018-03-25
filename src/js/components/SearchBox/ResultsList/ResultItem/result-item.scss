@@ -19,12 +19,20 @@
       margin-bottom: 10px;
       font-size: 16px;
       text-transform: capitalize;
+
+      @media screen and (max-width: $break-md) {
+        font-size: 16px;
+      }
     }
 
     &__title {
       color: $ts-blue;
       margin-bottom: 0;
       font-size: 24px;
+
+      @media screen and (max-width: $break-md) {
+        font-size: 18px;
+      }
     }
   }
 

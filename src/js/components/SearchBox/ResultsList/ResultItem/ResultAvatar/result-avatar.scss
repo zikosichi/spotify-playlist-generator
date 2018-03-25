@@ -1,6 +1,7 @@
 .avatar-box {
   width: 90px;
   height: 90px;
+  flex-shrink: 0;
   border-radius: 3px;
   overflow: hidden;
 }
