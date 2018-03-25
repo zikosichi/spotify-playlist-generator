@@ -25,7 +25,8 @@ class SearchBox extends React.Component {
       searchString: '',
       selectedTabIndex: 0,
       resultItems: [],
-      nextUrl: ''
+      nextUrl: '',
+      isLoading: false
     }
 
     // Bind events
@@ -59,7 +60,6 @@ class SearchBox extends React.Component {
 
   /**
    * Perform API call
-   *
    * @param {any} url
    * If url is provided then the function will use it
    * for making the call
@@ -69,24 +69,32 @@ class SearchBox extends React.Component {
    * the results instead of replacing it with new array
    */
   performSearch(url, append = false) {
+    if (!this.state.searchString) {
+      this.setState({
+        resultItems: []
+      })
+      return false;
+    }
+
     const q = this.state.searchString;
     const type = this.tabItems[this.state.selectedTabIndex].type
     const limit = 5
     url = url ? url : `https://api.spotify.com/v1/search?q=${q}&type=${type}&limit=${limit}`;
 
+    this.setState({
+      isLoading: true
+    })
+
     axios.get(url)
       .then((res) => {
         const items = res.data[type + 's'].items;
-
-        // console.log(items);
-
         this.setState((prevState) => {
           return {
             resultItems: append ? [...prevState.resultItems, ...items] : items,
-            nextUrl: res.data[type + 's'].next
+            nextUrl: res.data[type + 's'].next,
+            isLoading: false
           }
         });
-
       })
       .catch((error) => {
         console.log(error);
@@ -94,6 +102,30 @@ class SearchBox extends React.Component {
   }
 
   render() {
+    const type = this.tabItems[this.state.selectedTabIndex].type
+
+    const resultContent = (
+      <div className="search-result__content">
+        <ResultsList resultItems={this.state.resultItems}
+          showLoadMore={this.state.nextUrl ? true : false}
+          onShowMore={this.handleShowMore}
+          type={type}
+        />
+      </div>
+    )
+
+    const noResultContent = (
+      <div className="search-result__no-content">
+        No results found
+      </div>
+    )
+
+    const loadingContent = (
+      <div className="search-result__no-content">
+        Loading...
+      </div>
+    )
+
     const resultsBox = (
       <div className="search-result">
         <div className="search-result__header">
@@ -101,19 +133,16 @@ class SearchBox extends React.Component {
             selectedIndex={this.state.selectedTabIndex}
             onTabSelect={this.handleTabChange} />
         </div>
-        <div className="search-result__content">
-          <ResultsList resultItems={this.state.resultItems}
-            showLoadMore={this.state.nextUrl.length ? true : false}
-            onShowMore={this.handleShowMore}
-          />
-        </div>
+        { this.state.resultItems.length > 0 && resultContent }
+        { !this.state.isLoading && !this.state.resultItems.length && noResultContent }
+        { this.state.isLoading && loadingContent }
       </div>
     )
 
     return (
       <div>
         <SearchBar onSearch={this.handleSearch} />
-        {this.state.resultItems && resultsBox}
+        {this.state.searchString && resultsBox}
       </div>
     )
   }

@@ -10,7 +10,11 @@
     border-bottom: 1px solid $ts-light-gray;
   }
 
-  &__content {
-    // padding: 15px;
+  &__no-content {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 200;
+    padding: 20px;
+    color: $ts-gray;
   }
 }

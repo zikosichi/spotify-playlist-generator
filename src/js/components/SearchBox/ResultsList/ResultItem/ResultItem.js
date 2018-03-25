@@ -11,13 +11,13 @@ class ResultItem extends React.Component {
   render() {
     return (
       <div className="result">
-        <ResultAvatar />
+        <ResultAvatar avatarUrl={this.props.avatarUrl} />
         <div className="result__content">
           <p className="result__content__sub-title">
-            Sub Title
+            {this.props.subTitle}
           </p>
           <h3 className="result__content__title">
-            Madonna
+            {this.props.title}
           </h3>
         </div>
       </div>
@@ -28,10 +28,8 @@ class ResultItem extends React.Component {
 export default ResultItem;
 
 ResultItem.propTypes = {
-  resultItem: PropTypes.shape({
-    title: PropTypes.string,
-    subTitle: PropTypes.string,
-    avatarUrl: PropTypes.string,
-    previewUrl: PropTypes.string
-  })
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
+  avatarUrl: PropTypes.string,
+  previewUrl: PropTypes.string
 };

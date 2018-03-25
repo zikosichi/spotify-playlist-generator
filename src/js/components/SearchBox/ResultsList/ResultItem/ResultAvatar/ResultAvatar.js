@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './result-avatar.scss';
 
 class ResultsAvatar extends React.Component {
   render() {
     return (
       <div className="avatar-box">
-        <img src="https://i.scdn.co/image/28752dcf4b27ba14c1fc62f04ff469aa53c113d7"
+        <img src={this.props.avatarUrl}
              className="avatar"/>
       </div>
     )
@@ -13,3 +14,7 @@ class ResultsAvatar extends React.Component {
 }
 
 export default ResultsAvatar;
+
+ResultsAvatar.propTypes = {
+  avatarUrl: PropTypes.string
+};

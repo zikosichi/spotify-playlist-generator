@@ -14,6 +14,12 @@ class ResultsList extends React.Component {
     this.props.onShowMore(this.props.resultItems.next)
   }
 
+  parseImageUrl(item) {
+    return this.props.type === 'track'
+      ? item.album && item.album.images && item.album.images[0] ? item.album.images[0].url : ''
+      : item.images && item.images[0] ? item.images[0].url : ''
+  }
+
   render() {
     const loadMore = (
       <div className="show-more"
@@ -25,8 +31,20 @@ class ResultsList extends React.Component {
     return (
       <div>
         <div className="results-list">
-          {this.props.resultItems && this.props.resultItems.map((tab) =>
-            <ResultItem key={tab.id} />
+          {this.props.resultItems && this.props.resultItems.map((item) => {
+            const images = this.props.type === 'track' ?
+            item.album ? item.album.images : null : item.images
+
+            const avatarUrl = images && images[0] ? images[0].url : ''
+
+            return (
+              <ResultItem key={item.id}
+                title={item.name}
+                subTitle={item.album ? item.album.name : this.props.type}
+                avatarUrl={avatarUrl}
+                />
+            )
+          }
           )}
         </div>
         {this.props.showLoadMore && loadMore}
@@ -38,6 +56,7 @@ class ResultsList extends React.Component {
 export default ResultsList;
 
 ResultsList.propTypes = {
+  type: PropTypes.string,
   resultItems: PropTypes.array,
   showLoadMore: PropTypes.bool,
   onShowMore: PropTypes.func
