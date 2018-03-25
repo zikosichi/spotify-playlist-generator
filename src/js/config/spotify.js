@@ -1,3 +1,3 @@
-export const client_id = 'ad2d0d4d8ce7446f822485ac7ba870ef'
-export const callback_url = window.location.href
+export const client_id = 'a7a6362b66f04d5eaeb8f0b4691a8805'
+export const callback_url = window.location.origin
 export const auth_url = 'https://accounts.spotify.com/authorize'
