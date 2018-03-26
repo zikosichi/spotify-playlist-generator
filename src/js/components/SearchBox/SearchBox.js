@@ -89,8 +89,6 @@ class SearchBox extends React.Component {
       .then((res) => {
         const items = res.data[type + 's'].items;
 
-        console.log(items);
-
         this.setState((prevState) => {
           return {
             resultItems: append ? [...prevState.resultItems, ...items] : items,

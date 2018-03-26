@@ -5,9 +5,11 @@ class AudioPlayer {
   }
 
   static playAudio(url) {
+    if (!url) return false;
     this.stopAudio()
     this.audio = new Audio(url)
     this.audio.play()
+    this.audio.volume = .05
   }
 
   static stopAudio() {

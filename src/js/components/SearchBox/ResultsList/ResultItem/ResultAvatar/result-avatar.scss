@@ -16,8 +16,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    img {
-      transition: transform .1s;
+    &--play, &--stop {
+      transition: transform .2s;
+      width: 40px;
+      height: 40px;
+    }
+
+    &--stop {
+      width: 20px;
+      height: 20px;
     }
   }
 

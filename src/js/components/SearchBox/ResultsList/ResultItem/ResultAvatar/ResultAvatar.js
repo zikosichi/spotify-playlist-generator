@@ -2,38 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import micIcon from '../../../../../../assets/icons/music-player.svg'
 import playIcon from '../../../../../../assets/icons/play-button-icon.svg'
-import AudioPlayer from '../../../../../utils/audioPlayer'
+import stopIcon from '../../../../../../assets/icons/stop.svg'
 import './result-avatar.scss';
 
 class ResultsAvatar extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      currentlyPlayed: ''
-    }
-
-    // Bind events
-    this.handlePlay = this.handlePlay.bind(this)
-  }
-
-  handlePlay() {
-    this.setState({
-      isPlaying: true
-    })
-
-    AudioPlayer.playAudio(this.props.previewUrl)
   }
 
   componentWillUnmount() {
-    AudioPlayer.stopAudio()
+    if (this.props.currentlyPlaying === this.props.id) {
+      this.props.onDestroy()
+    }
   }
 
   render() {
     const playBtn = (
       <div className="avatar-box__play"
-        onClick={this.handlePlay}>
-        <img src={playIcon} />
+        onClick={this.props.togglePlay}>
+        {
+          this.props.currentlyPlaying === this.props.id ?
+          <img className="avatar-box__play--stop" src={stopIcon} /> :
+          <img className="avatar-box__play--play" src={playIcon} />
+        }
       </div>
     )
 
@@ -52,5 +43,9 @@ export default ResultsAvatar;
 ResultsAvatar.propTypes = {
   avatarUrl: PropTypes.string,
   previewUrl: PropTypes.string,
-  type: PropTypes.string
+  currentlyPlaying: PropTypes.string,
+  type: PropTypes.string,
+  togglePlay: PropTypes.func,
+  id: PropTypes.string,
+  onDestroy: PropTypes.func
 };
