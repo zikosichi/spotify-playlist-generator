@@ -12,7 +12,8 @@ const initialState = fromJS({
   items: [],
   searchString: '',
   itemsPerPage: 5,
-  nextUrl: ''
+  nextUrl: '',
+  currentlyPlayedPreviewUrl: ''
 })
 
 export const reducer = (state = initialState, action) => {

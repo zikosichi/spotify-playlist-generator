@@ -9,12 +9,9 @@ import './result-item.scss';
 
 class ResultItem extends React.Component {
   render() {
-
-    console.log(this.props.item);
-    
     return (
       <div className="result">
-        {/* <ResultAvatar {...this.props}/> */}
+        <ResultAvatar item={this.props.item}/>
         <div className="result__content">
           <p className="result__content__sub-title">
             {this.props.item.type}
