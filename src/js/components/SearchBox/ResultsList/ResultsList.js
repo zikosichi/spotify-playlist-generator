@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ResultItem from './ResultItem/ResultItem'
-import AudioPlayer from '../../../utils/audioPlayer'
 import { connect } from 'react-redux'
 import './results-list.scss'
 

@@ -18,17 +18,17 @@ class ResultsAvatar extends React.Component {
 
   // On play click
   handleTogglePlay() {
-    if (this.props.currentlyPlayedPreviewUrl === this.props.item.preview_url) {
-      this.props.updateFieldValue('currentlyPlayedPreviewUrl', null);
+    if (this.props.currentlyPlayedUrl === this.props.item.preview_url) {
+      this.props.updateFieldValue('currentlyPlayedUrl', null);
     } else {
-      this.props.updateFieldValue('currentlyPlayedPreviewUrl', this.props.item.preview_url);
+      this.props.updateFieldValue('currentlyPlayedUrl', this.props.item.preview_url);
     }
   }
 
   // Stop preview on component destroy
   componentWillUnmount() {
-    if (this.props.currentlyPlayedPreviewUrl === this.props.item.preview_url) {
-      this.props.updateFieldValue('currentlyPlayedPreviewUrl', null);
+    if (this.props.currentlyPlayedUrl === this.props.item.preview_url) {
+      this.props.updateFieldValue('currentlyPlayedUrl', null);
     }
   }
 
@@ -41,7 +41,7 @@ class ResultsAvatar extends React.Component {
       <div className="avatar-box__play"
            onClick={this.handleTogglePlay}>
         {
-          this.props.currentlyPlayedPreviewUrl === this.props.item.preview_url ?
+          this.props.currentlyPlayedUrl === this.props.item.preview_url ?
           <img className="avatar-box__play--stop" src={stopIcon} /> :
           <img className="avatar-box__play--play" src={playIcon} />
         }
@@ -64,7 +64,7 @@ ResultsAvatar.propTypes = {
 
 // Map reducer props
 const mapStateToProps = state => ({
-  currentlyPlayedPreviewUrl: state.get('currentlyPlayedPreviewUrl')
+  currentlyPlayedUrl: state.get('currentlyPlayedUrl')
 })
 
 // Map reducer methods

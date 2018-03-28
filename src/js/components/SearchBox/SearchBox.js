@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import AudioPlayer from '../../utils/audioPlayer'
 import { connect } from 'react-redux'
 
 // Components
@@ -28,6 +29,16 @@ class SearchBox extends React.Component {
 
   // Perform API call if tab or searchString changes
   componentDidUpdate(props) {
+    // Play/stop preview music
+    if (this.props.currentlyPlayedUrl !== props.currentlyPlayedUrl) {
+      if (this.props.currentlyPlayedUrl) {
+        AudioPlayer.playAudio(this.props.currentlyPlayedUrl)
+      } else {
+        AudioPlayer.stopAudio()
+      }
+    }
+
+    // Perform search
     const shouldPerformSearch =
       props.searchString !== this.props.searchString ||
       props.activeTabIndex !== this.props.activeTabIndex
@@ -105,7 +116,8 @@ const mapStateToProps = state => ({
   activeTabIndex: state.get('activeTabIndex'),
   searchString: state.get('searchString'),
   itemsPerPage: state.get('itemsPerPage'),
-  nextUrl: state.get('nextUrl')
+  nextUrl: state.get('nextUrl'),
+  currentlyPlayedUrl: state.get('currentlyPlayedUrl')
 })
 
 // Map reducer methods
