@@ -19,20 +19,25 @@ class SearchBar extends React.Component {
     // Bind events
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   // On form submit
   handleSubmit(e) {
     e.preventDefault();
-    this.props.updateFieldValue('searchString', this.state.searchString);
+    this.props.updateFieldValue('searchString', this.state.searchString)
   }
 
   // On search input change update
   // searchString in store
   handleChange(e) {
-    this.setState({
-      searchString: e.target.value
-    })
+    this.setState({ searchString: e.target.value })
+  }
+
+  // Handle input clear
+  handleClear() {
+    this.setState({ searchString: '' })
+    this.props.clearSearch()
   }
 
   render() {
@@ -50,7 +55,7 @@ class SearchBar extends React.Component {
 
     const clearBtn = (
       <div className="input-group-append search-bar__clear"
-           onClick={this.props.clearSearch}>
+           onClick={this.handleClear}>
         <span className="input-group-text">
           <img src={closeIcon}
             className="search-bar__clear__img" />

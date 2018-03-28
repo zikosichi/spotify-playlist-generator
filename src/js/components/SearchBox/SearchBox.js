@@ -43,7 +43,7 @@ class SearchBox extends React.Component {
       props.searchString !== this.props.searchString ||
       props.activeTabIndex !== this.props.activeTabIndex
 
-    if (shouldPerformSearch) {
+    if (shouldPerformSearch && this.props.searchString) {
       this.performSearch()
     }
   }
