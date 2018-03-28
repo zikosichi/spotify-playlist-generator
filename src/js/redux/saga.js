@@ -1,9 +1,9 @@
 import { takeLatest, call, put } from "redux-saga/effects";
-import axios from "axios";
+import axios from "axios"
 
 // Acitons
-import * as actionTypes from "./actionTypes";
-import * as actions from "./actions";
+import * as actionTypes from "./actionTypes"
+import * as actions from "./actions"
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* watcherSaga() {
@@ -21,14 +21,15 @@ function fetchData({q, type, limit}) {
 // worker saga: makes the api call when watcher saga sees the action
 function* searchSaga(action) {
   try {
-    const { data } = yield call(fetchData, action.payload);
-    const items = data[action.payload.type + 's'].items;
+    const { data } = yield call(fetchData, action.payload)
+    const type = action.payload.type + 's'
+    const items = data[type].items
+    const nextUrl = data[type].next
 
-    // dispatch a success action
-    yield put(actions.fetchDataSuccess(items));
-
+    // dispatch a success action with items and next url
+    yield put(actions.fetchDataSuccess({items: items, nextUrl: nextUrl}))
   } catch (error) {
     // dispatch a failure action
-    yield put(actions.fetchDataFailure(error));
+    yield put(actions.fetchDataFailure(error))
   }
 }

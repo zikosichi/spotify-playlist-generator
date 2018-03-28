@@ -4,12 +4,15 @@ import * as actionTypes from './actionTypes'
 const initialState = fromJS({
   isFetching: false,
   tabItems: [
-    { title: 'Tracks', type: 'track', active: true },
-    { title: 'Artists', type: 'artist' },
-    { title: 'Albums', type: 'album' }
+    { title: 'Tracks', type: 'track', resultKey: 'tracks' },
+    { title: 'Artists', type: 'artist', resultKey: 'artists', },
+    { title: 'Albums', type: 'album', resultKey: 'albums', }
   ],
+  activeTabIndex: 0,
   items: [],
-  searchString: ''
+  searchString: '',
+  itemsPerPage: 5,
+  nextUrl: ''
 })
 
 export const reducer = (state = initialState, action) => {
@@ -24,7 +27,8 @@ export const reducer = (state = initialState, action) => {
 
     case actionTypes.API_CALL_SUCCESS:
       return state.set('isFetching', false)
-                  .set('items', fromJS(action.payload))
+                  .set('items', fromJS(action.payload.items))
+                  .set('nextUrl', fromJS(action.payload.nextUrl))
 
     case actionTypes.API_CALL_FAILURE:
       return state.set('isFetching', false)
