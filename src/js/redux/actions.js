@@ -27,6 +27,8 @@ export function clearSearch() {
   }
 }
 
+// This function updates provided field in the store
+// With a given value. It can be used from many components
 export function updateFieldValue(field, value, parent = '') {
   let fields = []
   if (parent === '') {
