@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 
+// Actions
+import { updateFieldValue } from '../../redux/actions'
 
 // Styles
 import './tabs.scss';
@@ -11,15 +14,15 @@ class Tabs extends React.Component {
   }
 
   handleClick(index) {
-    this.props.onTabSelect(index)
+    this.props.updateFieldValue('activeTabIndex', index);
   }
 
   render() {
     const tabs = this.props.tabItems.map((tab, index) =>
-      <li className={"tab-item " + (this.props.selectedIndex === index && 'tab-item--active')}
-        key={tab.type}
-        onClick={this.handleClick.bind(this, index)}>
-        {tab.title}
+      <li className={'tab-item' + (this.props.activeTabIndex === index  ? ' tab-item--active' : '')}
+          key={tab.get('type')}
+          onClick={this.handleClick.bind(this, index)}>
+        {tab.get('title')}
       </li>
     );
 
@@ -31,20 +34,15 @@ class Tabs extends React.Component {
   }
 }
 
-export default Tabs;
+// Map reducer props
+const mapStateToProps = state => ({
+  tabItems: state.get('tabItems'),
+  activeTabIndex: state.get('activeTabIndex'),
+})
 
-Tabs.propTypes = {
-  tabItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      type: PropTypes.string
-    })
-  ),
-  selectedIndex: PropTypes.number,
-  onTabSelect: PropTypes.func
-}
+// Map reducer methods
+const mapDispatchToProps = dispatch => ({
+  updateFieldValue: (field, value) => dispatch(updateFieldValue(field, value)),
+})
 
-Tabs.defaultProps = {
-  tabItems: [],
-  selectedIndex: 0
-};
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs)
