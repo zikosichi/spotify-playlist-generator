@@ -33,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
+    "eslint": "^4.19.1",
     "file-loader": "^1.1.6",
     "gh-deploy": "^0.2.3",
     "gh-pages": "^1.1.0",

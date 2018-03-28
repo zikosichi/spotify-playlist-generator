@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ResultItem from './ResultItem/ResultItem'
 import { connect } from 'react-redux'
 import './results-list.scss'
 
@@ -15,7 +16,7 @@ class ResultsList extends React.Component {
   }
 
   // On show more click
-  handleShowMore() {
+  handleShowMore(e) {
     this.props.onShowMore(this.props.resultItems.next)
   }
 
