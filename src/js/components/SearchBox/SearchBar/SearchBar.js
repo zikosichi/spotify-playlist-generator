@@ -14,7 +14,8 @@ import './search-bar.scss';
 
 class SearchBar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = { searchString: '' }
 
     // Bind events
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,13 +25,15 @@ class SearchBar extends React.Component {
   // On form submit
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSearch(this.props.searchString);
+    this.props.updateFieldValue('searchString', this.state.searchString);
   }
 
   // On search input change update
   // searchString in store
   handleChange(e) {
-    this.props.updateFieldValue('searchString', e.target.value);
+    this.setState({
+      searchString: e.target.value
+    })
   }
 
   render() {
@@ -66,7 +69,7 @@ class SearchBar extends React.Component {
           <input type="text"
                  placeholder="Search for a song, album or artist"
                  className="form-control search-bar__input"
-                 value={this.props.searchString}
+                 value={this.state.searchString}
                  onChange={this.handleChange}/>
 
           {this.props.searchString && clearBtn}
@@ -81,11 +84,6 @@ class SearchBar extends React.Component {
     );
   }
 }
-
-// Define prop types
-SearchBar.propTypes = {
-  onSearch: PropTypes.func
-};
 
 const mapStateToProps = state => ({
   searchString: state.get('searchString'),
