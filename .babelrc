@@ -1,7 +1,9 @@
 {
   "presets": [
     "react",
-    "env"
+    "env",
+    "es2015",
+    "stage-0"
   ],
   "plugins": [
     ["module-resolver", {
