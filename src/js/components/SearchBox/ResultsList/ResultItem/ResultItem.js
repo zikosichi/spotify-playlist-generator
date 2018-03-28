@@ -9,15 +9,18 @@ import './result-item.scss';
 
 class ResultItem extends React.Component {
   render() {
+
+    console.log(this.props.item);
+    
     return (
       <div className="result">
-        <ResultAvatar {...this.props}/>
+        {/* <ResultAvatar {...this.props}/> */}
         <div className="result__content">
           <p className="result__content__sub-title">
-            {this.props.subTitle}
+            {this.props.item.type}
           </p>
           <h3 className="result__content__title">
-            {this.props.title}
+            {this.props.item.name}
           </h3>
         </div>
       </div>
@@ -28,13 +31,5 @@ class ResultItem extends React.Component {
 export default ResultItem;
 
 ResultItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  subTitle: PropTypes.string,
-  avatarUrl: PropTypes.string,
-  currentlyPlaying: PropTypes.string,
-  previewUrl: PropTypes.string,
-  togglePlay: PropTypes.func,
-  id: PropTypes.string,
-  onDestroy: PropTypes.func
+  item: PropTypes.object,
 };

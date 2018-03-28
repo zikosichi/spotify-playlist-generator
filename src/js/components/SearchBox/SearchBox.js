@@ -17,33 +17,25 @@ class SearchBox extends React.Component {
   constructor(props) {
     super(props);
 
-    // Init state
-    this.state = {
-      searchString: '',
-      selectedTabIndex: 0,
-      resultItems: [],
-      nextUrl: '',
-      isLoading: false
-    }
-
     // Bind events
-    // this.handleTabChange = this.handleTabChange.bind(this);
-    // this.handleShowMore = this.handleShowMore.bind(this);
+    this.handleShowMore = this.handleShowMore.bind(this);
   }
 
-  // On tab change
-  // handleTabChange(e) {
-  //   this.setState({
-  //     selectedTabIndex: e
-  //   }, () => {
-  //     this.performSearch()
-  //   })
-  // }
-
   // On show more
-  // handleShowMore(e) {
-  //   this.performSearch(this.state.nextUrl, true)
-  // }
+  handleShowMore(e) {
+    this.performSearch(true)
+  }
+
+  // Perform API call if tab or searchString changes
+  componentDidUpdate(props) {
+    const shouldPerformSearch =
+      props.searchString !== this.props.searchString ||
+      props.activeTabIndex !== this.props.activeTabIndex
+
+    if (shouldPerformSearch) {
+      this.performSearch()
+    }
+  }
 
   /**
    * @param {boolean} [append=false]
@@ -68,10 +60,8 @@ class SearchBox extends React.Component {
     const resultContent = (
       <div className="search-result__content">
         <ResultsList resultItems={this.props.resultItems}
-                     showLoadMore={this.state.nextUrl ? true : false}
                      onShowMore={this.handleShowMore}
-                     type={type}
-        />
+                     />
       </div>
     )
 
@@ -90,20 +80,19 @@ class SearchBox extends React.Component {
     const resultsBox = (
       <div className="search-result">
         <div className="search-result__header">
-          <Tabs tabItems={this.tabItems}
-            selectedIndex={this.state.selectedTabIndex}
-            onTabSelect={this.handleTabChange} />
+          <Tabs />
         </div>
-        { this.props.resultItems.size > 0 && resultContent }
-        { !this.props.isLoading && !this.props.resultItems.size && noResultContent }
-        { this.props.isLoading && loadingContent }
+        {resultContent}
+        {/* {this.props.resultItems.size > 0 && resultContent}
+        {!this.props.isLoading && !this.props.resultItems.size && noResultContent}
+        {this.props.isLoading && loadingContent} */}
       </div>
     )
 
     return (
       <div>
         <SearchBar onSearch={() => this.performSearch()} />
-        {this.state.searchString && resultsBox}
+        {this.props.searchString && resultsBox}
       </div>
     )
   }
