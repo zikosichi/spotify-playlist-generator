@@ -3,7 +3,7 @@ import * as actionTypes from './actionTypes';
 export function fetchDataRequest(payload) {
   return {
     type: actionTypes.API_CALL_REQUEST,
-    payload,
+    payload
   }
 }
 
@@ -18,6 +18,12 @@ export function fetchDataFailure(error) {
   return {
     type: actionTypes.API_CALL_FAILURE,
     error,
+  }
+}
+
+export function clearSearch() {
+  return {
+    type: actionTypes.CLEAR_SEARCH
   }
 }
 
