@@ -28,6 +28,18 @@ class ResultsList extends React.Component {
       </div>
     )
 
+    const noResultContent = (
+      <div className="search-result__no-content">
+        No results found
+      </div>
+    )
+
+    const loadingContent = (
+      <div className="search-result__no-content">
+        Loading...
+      </div>
+    )
+
     return (
       <div>
         <div className="results-list">
@@ -38,8 +50,10 @@ class ResultsList extends React.Component {
             )
           }
           )}
+          {this.props.isFetching && loadingContent}
+          {!this.props.isFetching && !this.props.resultItems.size && noResultContent}
+          {this.props.nextUrl && loadMore}
         </div>
-        {this.props.nextUrl && loadMore}
       </div>
     )
   }
@@ -52,7 +66,8 @@ ResultsList.propTypes = {
 // Map reducer props
 const mapStateToProps = state => ({
   resultItems: state.get('items'),
-  nextUrl: state.get('nextUrl')
+  nextUrl: state.get('nextUrl'),
+  isFetching: state.get('isFetching')
 })
 
 export default connect(mapStateToProps)(ResultsList)

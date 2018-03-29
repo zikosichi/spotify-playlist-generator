@@ -14,8 +14,6 @@ import { fetchDataRequest } from '../../redux/actions'
 // Styles
 import './search-box.scss'
 
-// TODO: Display loading in results
-
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
@@ -75,18 +73,6 @@ class SearchBox extends React.Component {
         <ResultsList resultItems={this.props.resultItems}
                      onShowMore={this.handleShowMore}
                      />
-      </div>
-    )
-
-    const noResultContent = (
-      <div className="search-result__no-content">
-        No results found
-      </div>
-    )
-
-    const loadingContent = (
-      <div className="search-result__no-content">
-        Loading...
       </div>
     )
 
