@@ -1,4 +1,13 @@
-# ✅ TicketSwap assessment ([Demo](https://zikosichi.github.io/frontend-assessment/))
+# ✅ TicketSwap assignment
+In this repository you can find two implementations of the assignment
+1. `master` - The redux way.
+Used Redux, Redux-saga, immutable, axios ([Live Demo hosted on Github Pages](https://zikosichi.github.io/frontend-assessment/))
+
+2. `react-only` - The redux way
+This was initial implementation of the given that is not using Redux
+([Branch](https://github.com/zikosichi/frontend-assessment/tree/react-only/))
+
+# TicketSwap assessment
 Thank you for doing our frontend assessment. The goal of the assessment would be to create a simple yet full experience Spotify search. We already setup some things for you, including build tools (js and css), React basic setup, Spotify auth redirect and a Spotify API helper. So you can focus on the frontend only. If you have any questions you can always [contact us](mailto:rob@ticketswap.com).
 
 ## Design
