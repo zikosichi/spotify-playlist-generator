@@ -17,3 +17,17 @@
     background-color: rgba($ts-light-gray, .2);
   }
 }
+
+.search-result {
+  &__no-content {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 200;
+    padding: 20px;
+    color: $ts-gray;
+
+    &--border-top {
+      border-top: 1px solid $ts-light-gray;
+    }
+  }
+}

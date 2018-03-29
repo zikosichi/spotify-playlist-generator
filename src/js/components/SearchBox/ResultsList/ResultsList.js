@@ -35,25 +35,31 @@ class ResultsList extends React.Component {
     )
 
     const loadingContent = (
-      <div className="search-result__no-content">
+      <div className={
+        `search-result__no-content ${this.props.resultItems.size > 0 ?
+          'search-result__no-content--border-top' :
+          ''}`
+        }>
         Loading...
       </div>
     )
 
     return (
       <div>
-        <div className="results-list">
-          {this.props.resultItems.map((item) => {
-            return (
-              <ResultItem key={item.get('id')}
-                          item={item.toJS()}/>
-            )
-          }
-          )}
-          {this.props.isFetching && loadingContent}
-          {!this.props.isFetching && !this.props.resultItems.size && noResultContent}
-          {this.props.nextUrl && loadMore}
-        </div>
+        {this.props.resultItems.size > 0 && (
+          <div className="results-list">
+            {this.props.resultItems.map((item) => {
+              return (
+                <ResultItem key={item.get('id')}
+                            item={item.toJS()}/>
+              )
+            }
+            )}
+          </div>
+        )}
+        {this.props.isFetching && loadingContent}
+        {!this.props.isFetching && !this.props.resultItems.size && noResultContent}
+        {!this.props.isFetching && this.props.nextUrl && loadMore}
       </div>
     )
   }
