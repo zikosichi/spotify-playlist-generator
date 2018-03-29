@@ -39,7 +39,7 @@ class ResultsList extends React.Component {
           }
           )}
         </div>
-        {this.props.showLoadMore && loadMore}
+        {this.props.nextUrl && loadMore}
       </div>
     )
   }
@@ -51,7 +51,8 @@ ResultsList.propTypes = {
 
 // Map reducer props
 const mapStateToProps = state => ({
-  resultItems: state.get('items')
+  resultItems: state.get('items'),
+  nextUrl: state.get('nextUrl')
 })
 
 export default connect(mapStateToProps)(ResultsList)

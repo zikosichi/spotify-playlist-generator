@@ -14,6 +14,8 @@ import { fetchDataRequest } from '../../redux/actions'
 // Styles
 import './search-box.scss'
 
+// TODO: Display loading in results
+
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class SearchBox extends React.Component {
 
   // On show more
   handleShowMore(e) {
-    this.performSearch(true)
+    this.performSearch(true, this.props.nextUrl)
   }
 
   // Perform API call if tab or searchString changes
@@ -53,12 +55,12 @@ class SearchBox extends React.Component {
    * If append is true it will append result to
    * resultItems instead of replacing it with new array
    */
-  performSearch(append = false) {
+  performSearch(append = false, url) {
     const payload = {
       q: this.props.searchString,
       type: this.props.tabItems.toJS()[this.props.activeTabIndex].type,
       limit: this.props.itemsPerPage,
-      nextUrl: this.props.nextUrl,
+      nextUrl: url,
       append: append
     }
 

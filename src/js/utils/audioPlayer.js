@@ -5,8 +5,6 @@ class AudioPlayer {
   }
 
   static playAudio(url) {
-    console.log('play');
-    
     if (!url) return false;
     this.stopAudio()
     this.audio = new Audio(url)

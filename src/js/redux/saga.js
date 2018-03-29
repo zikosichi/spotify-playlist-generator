@@ -11,10 +11,10 @@ export function* watcherSaga() {
 }
 
 // function that makes the api request and returns a Promise for response
-function fetchData({q, type, limit}) {
+function fetchData({ q, type, limit, append, nextUrl }) {
   return axios({
     method: "get",
-    url: `https://api.spotify.com/v1/search?q=${q}&type=${type}&limit=${limit}`
+    url: nextUrl ? nextUrl : `https://api.spotify.com/v1/search?q=${q}&type=${type}&limit=${limit}`
   });
 }
 
@@ -25,9 +25,10 @@ function* searchSaga(action) {
     const type = action.payload.type + 's'
     const items = data[type].items
     const nextUrl = data[type].next
+    const append = action.payload.append
 
     // dispatch a success action with items and next url
-    yield put(actions.fetchDataSuccess({items: items, nextUrl: nextUrl}))
+    yield put(actions.fetchDataSuccess({ items: items, nextUrl: nextUrl, append: append }))
   } catch (error) {
     // dispatch a failure action
     yield put(actions.fetchDataFailure(error))
