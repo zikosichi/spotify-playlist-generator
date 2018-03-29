@@ -15,8 +15,11 @@ import '../css/main.scss'
 const sagaMiddleware = createSagaMiddleware();
 
 // dev tools middleware
-const reduxDevTools =
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  window.__REDUX_DEVTOOLS_EXTENSION__();
+if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production') {
+  devTools = a => a;
+}
 
 // create a redux store with our reducer above and middleware
 let store = createStore(
