@@ -9,13 +9,13 @@ class ResultsList extends React.Component {
     super(props)
 
     this.state = {
-      currentlyPlaying: null
+      currentlyPlaying: null,
+      activeItemId: null
     }
   }
 
-  // Perform API call if tab or searchString changes
-  componentDidUpdate(props) {
-    console.log(this.props.resultItems.get('artists'));
+  handleItemActivation(item) {
+    this.setState({activeItemId: item.get('id')})
   }
 
   render() {
@@ -41,8 +41,14 @@ class ResultsList extends React.Component {
                   <div className="results-list__block__content">
                     {this.props.resultItems.get(key).get('items').map((item) => {
                       return(
-                        <ResultItem key={item.get('id')}
-                                    item={item.toJS()}/>
+                        <div onMouseEnter={() => this.handleItemActivation(item)}
+                             className={item.get('id') === this.state.activeItemId ? 'results-list__item--active' : ''}
+                             key={item.get('id')}
+                             >
+                          <ResultItem key={item.get('id')}
+                                      item={item.toJS()}
+                                      />
+                        </div>
                       )
                     })}
                   </div>

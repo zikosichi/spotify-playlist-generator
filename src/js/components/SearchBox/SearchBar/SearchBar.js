@@ -17,21 +17,13 @@ class SearchBar extends React.Component {
     this.state = { searchString: '' }
 
     // Bind events
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClear = this.handleClear.bind(this);
   }
 
-  // On form submit
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.updateFieldValue('searchString', this.state.searchString)
-  }
-
   // On search input change update
-  // searchString in store
   handleChange(e) {
-    this.setState({ searchString: e.target.value })
+    this.props.updateFieldValue('searchString', e.target.value)
   }
 
   // Handle input clear
@@ -64,27 +56,20 @@ class SearchBar extends React.Component {
     )
 
     return (
-      <form className="d-flex search-bar"
-            onSubmit={this.handleSubmit}>
+      <div className="d-flex search-bar">
 
         <div className="input-group search-bar__input-group">
           {loupeAddon}
 
           <input type="text"
-                 placeholder="Search for a song, album or artist"
+                 placeholder="Search for a song or artist"
                  className="form-control search-bar__input"
-                 value={this.state.searchString}
+                 value={this.props.searchString}
                  onChange={this.handleChange}/>
 
           {this.props.searchString && clearBtn}
         </div>
-
-        <button type="submit"
-                className="btn btn-success ml-3 search-bar__btn">
-          Search
-        </button>
-
-      </form>
+      </div>
     );
   }
 }
