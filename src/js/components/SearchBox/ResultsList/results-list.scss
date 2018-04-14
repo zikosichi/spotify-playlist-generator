@@ -1,7 +1,16 @@
 @import '../../../../css/variables';
 
 .results-list {
-  padding: 15px;
+  &__block {
+    &__header {
+      padding: 10px 15px;
+      text-transform: capitalize;
+      font-size: 18px;
+      font-weight: 200;
+      color: $ts-blue;
+      // background-color: rgba($ts-light-gray, .4);
+    }
+  }
 }
 
 .show-more {

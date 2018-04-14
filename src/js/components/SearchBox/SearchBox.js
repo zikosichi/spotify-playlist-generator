@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 // Components
 import SearchBar from './SearchBar/SearchBar'
-import Tabs from '../Tabs/Tabs'
 import ResultsList from './ResultsList/ResultsList'
 
 // Actions

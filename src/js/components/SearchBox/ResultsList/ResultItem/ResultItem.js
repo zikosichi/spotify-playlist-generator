@@ -13,12 +13,12 @@ class ResultItem extends React.Component {
       <div className="result">
         <ResultAvatar item={this.props.item}/>
         <div className="result__content">
-          <p className="result__content__sub-title">
-            {this.props.item.type}
-          </p>
           <h3 className="result__content__title">
             {this.props.item.name}
           </h3>
+          <p className="result__content__sub-title">
+            {this.props.item.type}
+          </p>
         </div>
       </div>
     )

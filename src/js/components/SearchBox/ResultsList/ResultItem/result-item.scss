@@ -2,22 +2,21 @@
 
 .result {
   display: flex;
-  padding: 15px;
-  border-radius: 4px;
-  cursor: pointer;
+  align-items: center;
+  padding: 10px 15px;
   transition: all .15s;
 
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 30px;
+    margin-left: 15px;
 
     &__sub-title {
       color: $ts-gray + 20;
       font-weight: 300;
-      margin-bottom: 10px;
-      font-size: 16px;
+      margin-bottom: 0;
+      font-size: 12px;
       text-transform: capitalize;
 
       @media screen and (max-width: $break-md) {
@@ -26,9 +25,9 @@
     }
 
     &__title {
-      color: $ts-blue;
+      color: $ts-dark;
       margin-bottom: 0;
-      font-size: 24px;
+      font-size: 16px;
 
       @media screen and (max-width: $break-md) {
         font-size: 18px;

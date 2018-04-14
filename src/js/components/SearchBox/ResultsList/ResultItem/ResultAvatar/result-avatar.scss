@@ -1,10 +1,15 @@
+@import '../../../../../../css/variables';
+
 .avatar-box {
-  width: 90px;
-  height: 90px;
+  width: 35px;
+  height: 35px;
   flex-shrink: 0;
   position: relative;
   border-radius: 3px;
   overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba($ts-dark, .1);
+  border: 1px solid rgba($ts-dark, .1);
 
   &--round {
     border-radius: 50%;
