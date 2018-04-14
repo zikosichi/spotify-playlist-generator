@@ -8,8 +8,18 @@
   border-radius: 3px;
   overflow: hidden;
   border-radius: 2px;
-  box-shadow: 0 1px 3px rgba($ts-dark, .1);
-  border: 1px solid rgba($ts-dark, .1);
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba($ts-dark, .3);
+  }
 
   &--round {
     border-radius: 50%;
@@ -20,16 +30,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
 
     &--play, &--stop {
+      color: #fff;
+      text-shadow: 0 1px 0 rgba($ts-dark, .8);
       transition: transform .2s;
-      width: 40px;
-      height: 40px;
-    }
-
-    &--stop {
-      width: 20px;
-      height: 20px;
     }
   }
 
