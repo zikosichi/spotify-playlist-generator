@@ -1,7 +1,7 @@
 {
   "name": "ts-assessment",
   "version": "0.0.1",
-  "description": "TicketSwap assessment",
+  "description": "Spotify Playlist Generator",
   "homepage": "http://zikosichi.github.io/frontend-assessment",
   "scripts": {
     "start": "webpack-dev-server --hot",

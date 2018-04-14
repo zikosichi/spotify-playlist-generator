@@ -7,7 +7,10 @@ import * as actions from "./actions"
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* watcherSaga() {
-  yield takeLatest(actionTypes.API_CALL_REQUEST, searchSaga);
+  yield [
+    takeLatest(actionTypes.API_CALL_REQUEST, searchSaga),
+    takeLatest(actionTypes.USER_DETAILS_REQUEST, userSaga)
+  ]
 }
 
 // function that makes the api request and returns a Promise for response
@@ -31,6 +34,23 @@ function* searchSaga(action) {
     yield put(actions.fetchDataSuccess({ items: items, nextUrl: nextUrl, append: append }))
   } catch (error) {
     // dispatch a failure action
+    yield put(actions.fetchDataFailure(error))
+  }
+}
+
+// function that makes the api request and returns a Promise for response
+function fetchUser() {
+  return axios({
+    method: "get",
+    url: `https://api.spotify.com/v1/me`
+  });
+}
+
+function* userSaga(action) {
+  try {
+    const { data } = yield call(fetchUser)
+    yield put(actions.fetchUserSuccess({ user: data }))
+  } catch (error) {
     yield put(actions.fetchDataFailure(error))
   }
 }

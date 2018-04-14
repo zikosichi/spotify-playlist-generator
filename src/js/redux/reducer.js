@@ -13,7 +13,9 @@ const initialState = fromJS({
   searchString: '',
   itemsPerPage: 5,
   nextUrl: '',
-  currentlyPlayedUrl: ''
+  currentlyPlayedUrl: '',
+  isFetchingUser: false,
+  user: null
 })
 
 export const reducer = (state = initialState, action) => {
@@ -29,7 +31,6 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.API_CALL_SUCCESS:
       const append = action.payload.append
       const items = append ? [...state.get('items').toJS(), ...action.payload.items] : action.payload.items
-
       return state.set('isFetching', false)
                   .set('items', fromJS(items))
                   .set('nextUrl', fromJS(action.payload.nextUrl))
@@ -40,6 +41,16 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.CLEAR_SEARCH:
       return state.set('searchString', initialState.get('searchString'))
                   .set('items', initialState.get('items'))
+
+    case actionTypes.USER_DETAILS_REQUEST:
+      return state.set('isFetchingUser', true)
+
+    case actionTypes.USER_DETAILS_SUCCESS:
+      return state.set('isFetchingUser', 'false')
+                  .set('user', fromJS(action.payload.user))
+
+    case actionTypes.USER_DETAILS_FAILURE:
+      return state.set('isFetchingUser', false)
 
     default:
       return state

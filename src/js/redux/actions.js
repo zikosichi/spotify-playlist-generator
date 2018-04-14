@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes';
 
+/**
+ * Fetch User details
+ */
 export function fetchDataRequest(payload) {
   return {
     type: actionTypes.API_CALL_REQUEST,
@@ -21,6 +24,32 @@ export function fetchDataFailure(error) {
   }
 }
 
+/**
+ * Fetch User details
+ */
+export function fetchUserRequest() {
+  return {
+    type: actionTypes.USER_DETAILS_REQUEST
+  }
+}
+
+export function fetchUserSuccess(payload) {
+  return {
+    type: actionTypes.USER_DETAILS_SUCCESS,
+    payload,
+  }
+}
+
+export function fetchUserFailure(error) {
+  return {
+    type: actionTypes.USER_DETAILS_FAILURE,
+    error,
+  }
+}
+
+/**
+ * Clear search
+ */
 export function clearSearch() {
   return {
     type: actionTypes.CLEAR_SEARCH

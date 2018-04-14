@@ -1,23 +1,45 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { hot } from 'react-hot-loader'
 import spotifyApi from 'utils/spotify'
 import initInterceptor from 'utils/interceptor'
 
+import { connect } from 'react-redux'
+
+// Actions
+import { fetchUserRequest } from '../redux/actions'
+
 // Components
 import SearchBox from 'components/SearchBox/SearchBox'
 
-class App extends Component {
+class App extends React.Component {
   componentDidMount() {
     initInterceptor()
+    this.getUserDetails()
+  }
+
+  getUserDetails() {
+    this.props.fetchUserRequest()
   }
 
   render() {
     return (
       <div className="container">
+        {this.props.user ? this.props.user.get('display_name') : ''}
         <SearchBox></SearchBox>
       </div>
     )
   }
 }
 
-export default hot(module)(App)
+// Map reducer props
+const mapStateToProps = state => ({
+  isFetchingUser: state.get('isFetchingUser'),
+  user: state.get('user')
+})
+
+// Map reducer methods
+const mapDispatchToProps = dispatch => ({
+  fetchUserRequest: () => dispatch(fetchUserRequest()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
