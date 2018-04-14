@@ -78,13 +78,7 @@ class SearchBox extends React.Component {
 
     const resultsBox = (
       <div className="search-result">
-        <div className="search-result__header">
-          <Tabs />
-        </div>
         {resultContent}
-        {/* {this.props.resultItems.size > 0 && resultContent}
-        {!this.props.isLoading && !this.props.resultItems.size && noResultContent}
-        {this.props.isLoading && loadingContent} */}
       </div>
     )
 

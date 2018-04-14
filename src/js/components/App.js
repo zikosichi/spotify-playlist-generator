@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   getUserDetails() {
-    this.props.fetchUserRequest()
+    this.props.fetchUserDetails()
   }
 
   render() {
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 
 // Map reducer methods
 const mapDispatchToProps = dispatch => ({
-  fetchUserRequest: () => dispatch(fetchUserRequest()),
+  fetchUserDetails: () => dispatch(fetchUserRequest()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App))
