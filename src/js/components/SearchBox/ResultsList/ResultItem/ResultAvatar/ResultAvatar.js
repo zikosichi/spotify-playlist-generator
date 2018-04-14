@@ -38,8 +38,7 @@ class ResultsAvatar extends React.Component {
     const avatar = images[0] ? images[0].url : null
 
     const playBtn = (
-      <div className="avatar-box__play"
-           onClick={this.handleTogglePlay}>
+      <div className="avatar-box__play">
         {
           this.props.currentlyPlayedUrl === this.props.item.preview_url ?
           <i className="fa fa-stop avatar-box__play--stop"></i> :
@@ -49,7 +48,9 @@ class ResultsAvatar extends React.Component {
     )
 
     return (
-      <div className={'avatar-box ' + (item.type === 'track' ? 'avatar-box--round' : '')}>
+      <div className={'avatar-box ' + (item.type === 'track' ? 'avatar-box--round' : '')}
+           onMouseEnter={this.handleTogglePlay}
+           onMouseLeave={this.handleTogglePlay}>
         <img src={avatar || micIcon}
              className="avatar" />
         {item.preview_url && playBtn}
