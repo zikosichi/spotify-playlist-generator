@@ -29,10 +29,8 @@ export const reducer = (state = initialState, action) => {
       return state.set('isFetching', true)
 
     case actionTypes.API_CALL_SUCCESS:
-      const append = action.payload.append
-      const items = append ? [...state.get('items').toJS(), ...action.payload.items] : action.payload.items
       return state.set('isFetching', false)
-                  .set('items', fromJS(items))
+                  .set('items', fromJS(action.payload))
                   .set('nextUrl', fromJS(action.payload.nextUrl))
 
     case actionTypes.API_CALL_FAILURE:

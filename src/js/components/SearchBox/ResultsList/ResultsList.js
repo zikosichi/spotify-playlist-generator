@@ -11,36 +11,17 @@ class ResultsList extends React.Component {
     this.state = {
       currentlyPlaying: null
     }
-
-    this.handleShowMore = this.handleShowMore.bind(this)
   }
 
-  // On show more click
-  handleShowMore(e) {
-    this.props.onShowMore(this.props.resultItems.next)
+  // Perform API call if tab or searchString changes
+  componentDidUpdate(props) {
+    console.log(this.props.resultItems.get('artists'));
   }
 
   render() {
-    const loadMore = (
-      <div className="show-more"
-        onClick={this.handleShowMore}>
-        Show More...
-      </div>
-    )
-
     const noResultContent = (
       <div className="search-result__no-content">
         No results found
-      </div>
-    )
-
-    const loadingContent = (
-      <div className={
-        `search-result__no-content ${this.props.resultItems.size > 0 ?
-          'search-result__no-content--border-top' :
-          ''}`
-        }>
-        Loading...
       </div>
     )
 
@@ -48,25 +29,32 @@ class ResultsList extends React.Component {
       <div>
         {this.props.resultItems.size > 0 && (
           <div className="results-list">
-            {this.props.resultItems.map((item) => {
+
+            {Object.keys(this.props.resultItems.toJS()).map((key) => {
               return (
-                <ResultItem key={item.get('id')}
-                            item={item.toJS()}/>
+                <div className="results-list__block"
+                     key={key}>
+                  <div className="results-list__block__header">
+                    { key }
+                  </div>
+
+                  <div className="results-list__block__content">
+                    {this.props.resultItems.get(key).get('items').map((item) => {
+                      return(
+                        <ResultItem key={item.get('id')}
+                                    item={item.toJS()}/>
+                      )
+                    })}
+                  </div>
+                </div>
               )
-            }
-            )}
+            })}
           </div>
         )}
-        {this.props.isFetching && loadingContent}
         {!this.props.isFetching && !this.props.resultItems.size && noResultContent}
-        {!this.props.isFetching && this.props.nextUrl && loadMore}
       </div>
     )
   }
-}
-
-ResultsList.propTypes = {
-  onShowMore: PropTypes.func
 }
 
 // Map reducer props

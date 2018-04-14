@@ -17,14 +17,6 @@ import './search-box.scss'
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
-
-    // Bind events
-    this.handleShowMore = this.handleShowMore.bind(this);
-  }
-
-  // On show more
-  handleShowMore(e) {
-    this.performSearch(true, this.props.nextUrl)
   }
 
   // Perform API call if tab or searchString changes
@@ -71,7 +63,6 @@ class SearchBox extends React.Component {
     const resultContent = (
       <div className="search-result__content">
         <ResultsList resultItems={this.props.resultItems}
-                     onShowMore={this.handleShowMore}
                      />
       </div>
     )
