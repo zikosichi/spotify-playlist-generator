@@ -5,17 +5,25 @@ import { connect } from 'react-redux'
 import './results-list.scss'
 
 class ResultsList extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
       currentlyPlaying: null,
     }
+
+    this.handleItemActivation = this.handleItemActivation.bind(this)
+    this.handleItemClick = this.handleItemClick.bind(this)
   }
 
   // Activate item
   handleItemActivation(item) {
     this.props.onItemHover(item)
+  }
+
+  // Activate item
+  handleItemClick() {
+    this.props.onItemSelect()
   }
 
   render() {
@@ -34,6 +42,7 @@ class ResultsList extends React.Component {
               return (
                 <div className="results-list__block"
                      key={key}>
+
                   <div className="results-list__block__header">
                     { key }
                   </div>
@@ -42,8 +51,9 @@ class ResultsList extends React.Component {
                     {this.props.resultItems.getIn([key, 'items']).map((item) => {
                       return(
                         <div onMouseEnter={() => this.handleItemActivation(item)}
-                             className={item.get('id') === this.state.activeItemId ? 'results-list__item--active' : ''}
+                             className={item.get('id') === this.props.activeItemId ? 'results-list__item--active' : ''}
                              key={item.get('id')}
+                             onClick={this.handleItemClick}
                              >
                           <ResultItem key={item.get('id')}
                                       item={item.toJS()}
@@ -67,6 +77,13 @@ class ResultsList extends React.Component {
 ResultsList.propTypes = {
   activeItemId: PropTypes.string,
   onItemHover: PropTypes.func,
+  onItemSelect: PropTypes.func,
+};
+
+// Define types
+ResultsList.defaultProps = {
+  onItemHover: () => false,
+  onItemSelect: () => false,
 };
 
 // Map reducer props

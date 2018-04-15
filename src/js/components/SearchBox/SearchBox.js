@@ -19,6 +19,7 @@ class SearchBox extends React.Component {
     this.state = { activeItemId: null }
 
     this.handleArrowNav = this.handleArrowNav.bind(this)
+    this.handleItemHover = this.handleItemHover.bind(this)
   }
 
   // Perform API call if searchString changes
@@ -46,6 +47,11 @@ class SearchBox extends React.Component {
     console.log(e);
   }
 
+  // On arrow up key press
+  handleItemHover(item) {
+    this.setState({ activeItemId: item.get('id') })
+  }
+
   // Perform search
   performSearch(query) {
     const payload = {
@@ -60,6 +66,8 @@ class SearchBox extends React.Component {
     const resultContent = (
       <div className="search-result__content">
         <ResultsList resultItems={this.props.resultItems}
+                     onItemHover={this.handleItemHover}
+                     activeItemId={this.state.activeItemId}
                      />
       </div>
     )
