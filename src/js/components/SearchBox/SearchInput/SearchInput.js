@@ -10,9 +10,9 @@ import closeIcon from '../../../../assets/icons/close.svg';
 import { updateFieldValue, clearSearch } from '../../../redux/actions'
 
 // Styles
-import './search-bar.scss';
+import './search-input.scss';
 
-class SearchBar extends React.Component {
+class SearchInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = { searchString: '' }
@@ -89,7 +89,7 @@ class SearchBar extends React.Component {
   }
 }
 
-SearchBar.propTypes = {
+SearchInput.propTypes = {
   onArrowNavChange: PropTypes.func,
 };
 
@@ -103,4 +103,4 @@ const mapDispatchToProps = dispatch => ({
   clearSearch: () => dispatch(clearSearch())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)

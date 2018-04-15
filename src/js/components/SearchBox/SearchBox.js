@@ -4,7 +4,7 @@ import AudioPlayer from '../../utils/audioPlayer'
 import { connect } from 'react-redux'
 
 // Components
-import SearchBar from './SearchBar/SearchBar'
+import SearchInput from './SearchInput/SearchInput'
 import ResultsList from './ResultsList/ResultsList'
 
 // Actions
@@ -71,7 +71,7 @@ class SearchBox extends React.Component {
 
     return (
       <div>
-        <SearchBar onArrowNavChange={this.handleArrowNav}
+        <SearchInput onArrowNavChange={this.handleArrowNav}
                    />
         {this.props.searchString && resultsBox}
       </div>
