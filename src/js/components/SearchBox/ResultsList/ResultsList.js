@@ -14,6 +14,7 @@ class ResultsList extends React.Component {
     }
   }
 
+  // Activate item
   handleItemActivation(item) {
     this.setState({activeItemId: item.get('id')})
   }
@@ -30,7 +31,7 @@ class ResultsList extends React.Component {
         {this.props.resultItems.size > 0 && (
           <div className="results-list">
 
-            {Object.keys(this.props.resultItems.toJS()).map((key) => {
+            {this.props.resultItems.keySeq().map(key => {
               return (
                 <div className="results-list__block"
                      key={key}>
@@ -39,7 +40,7 @@ class ResultsList extends React.Component {
                   </div>
 
                   <div className="results-list__block__content">
-                    {this.props.resultItems.get(key).get('items').map((item) => {
+                    {this.props.resultItems.getIn([key, 'items']).map((item) => {
                       return(
                         <div onMouseEnter={() => this.handleItemActivation(item)}
                              className={item.get('id') === this.state.activeItemId ? 'results-list__item--active' : ''}
@@ -66,7 +67,6 @@ class ResultsList extends React.Component {
 // Map reducer props
 const mapStateToProps = state => ({
   resultItems: state.get('items'),
-  nextUrl: state.get('nextUrl'),
   isFetching: state.get('isFetching')
 })
 

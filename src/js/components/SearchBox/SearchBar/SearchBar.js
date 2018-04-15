@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
 
 // Assets
 import searchIcon from '../../../../assets/icons/search-icon.svg';
@@ -19,11 +20,24 @@ class SearchBar extends React.Component {
     // Bind events
     this.handleChange = this.handleChange.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   // On search input change update
   handleChange(e) {
     this.props.updateFieldValue('searchString', e.target.value)
+  }
+
+  // If arrow keys were pressed
+  handleKeyDown(e) {
+    if (e.keyCode === 38) {
+      e.preventDefault()
+      this.props.onArrowNavChange(1)
+    }
+    if (e.keyCode === 40) {
+      e.preventDefault()
+      this.props.onArrowNavChange(-1)
+    }
   }
 
   // Handle input clear
@@ -57,7 +71,6 @@ class SearchBar extends React.Component {
 
     return (
       <div className="d-flex search-bar">
-
         <div className="input-group search-bar__input-group">
           {loupeAddon}
 
@@ -65,7 +78,9 @@ class SearchBar extends React.Component {
                  placeholder="Search for a song or artist"
                  className="form-control search-bar__input"
                  value={this.props.searchString}
-                 onChange={this.handleChange}/>
+                 onChange={this.handleChange}
+                 onKeyDown={this.handleKeyDown}
+                 />
 
           {this.props.searchString && clearBtn}
         </div>
@@ -73,6 +88,10 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onArrowNavChange: PropTypes.func,
+};
 
 const mapStateToProps = state => ({
   searchString: state.get('searchString'),

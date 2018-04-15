@@ -16,14 +16,16 @@ import './search-box.scss'
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleArrowNav = this.handleArrowNav.bind(this)
   }
 
-  // Perform API call if tab or searchString changes
-  componentDidUpdate(props) {
+  // Perform API call if searchString changes
+  componentWillReceiveProps(nextProps) {
     // Play/stop preview music
-    if (this.props.currentlyPlayedUrl !== props.currentlyPlayedUrl) {
-      if (this.props.currentlyPlayedUrl) {
-        AudioPlayer.playAudio(this.props.currentlyPlayedUrl)
+    if (this.props.currentlyPlayedUrl !== nextProps.currentlyPlayedUrl) {
+      if (nextProps.currentlyPlayedUrl) {
+        AudioPlayer.playAudio(nextProps.currentlyPlayedUrl)
       } else {
         AudioPlayer.stopAudio()
       }
@@ -31,34 +33,29 @@ class SearchBox extends React.Component {
 
     // Perform search
     const shouldPerformSearch =
-      props.searchString !== this.props.searchString ||
-      props.activeTabIndex !== this.props.activeTabIndex
+      nextProps.searchString !== this.props.searchString
 
-    if (shouldPerformSearch && this.props.searchString) {
-      this.performSearch()
+    if (shouldPerformSearch && nextProps.searchString) {
+      this.performSearch(nextProps.searchString)
     }
   }
 
-  /**
-   * @param {boolean} [append=false]
-   * If append is true it will append result to
-   * resultItems instead of replacing it with new array
-   */
-  performSearch(append = false, url) {
+  // On arrow up key press
+  handleArrowNav(e) {
+    console.log('Arrow Up');
+  }
+
+  // Perform search
+  performSearch(query) {
     const payload = {
-      q: this.props.searchString,
-      type: this.props.tabItems.toJS()[this.props.activeTabIndex].type,
+      q: query,
       limit: this.props.itemsPerPage,
-      nextUrl: url,
-      append: append
     }
 
     this.props.fetchDataRequest(payload)
   }
 
   render() {
-    const type = this.props.tabItems.toJS()[this.props.activeTabIndex].type
-
     const resultContent = (
       <div className="search-result__content">
         <ResultsList resultItems={this.props.resultItems}
@@ -74,7 +71,8 @@ class SearchBox extends React.Component {
 
     return (
       <div>
-        <SearchBar onSearch={() => this.performSearch()} />
+        <SearchBar onArrowNavChange={this.handleArrowNav}
+                   />
         {this.props.searchString && resultsBox}
       </div>
     )
@@ -84,11 +82,8 @@ class SearchBox extends React.Component {
 // Map reducer props
 const mapStateToProps = state => ({
   resultItems: state.get('items'),
-  tabItems: state.get('tabItems'),
-  activeTabIndex: state.get('activeTabIndex'),
   searchString: state.get('searchString'),
   itemsPerPage: state.get('itemsPerPage'),
-  nextUrl: state.get('nextUrl'),
   currentlyPlayedUrl: state.get('currentlyPlayedUrl')
 })
 

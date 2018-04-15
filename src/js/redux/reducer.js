@@ -3,16 +3,9 @@ import * as actionTypes from './actionTypes'
 
 const initialState = fromJS({
   isFetching: false,
-  tabItems: [
-    { title: 'Tracks', type: 'track', resultKey: 'tracks' },
-    { title: 'Artists', type: 'artist', resultKey: 'artists', },
-    { title: 'Albums', type: 'album', resultKey: 'albums', }
-  ],
-  activeTabIndex: 0,
   items: [],
   searchString: '',
   itemsPerPage: 5,
-  nextUrl: '',
   currentlyPlayedUrl: '',
   isFetchingUser: false,
   user: null
@@ -31,7 +24,6 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.API_CALL_SUCCESS:
       return state.set('isFetching', false)
                   .set('items', fromJS(action.payload))
-                  .set('nextUrl', fromJS(action.payload.nextUrl))
 
     case actionTypes.API_CALL_FAILURE:
       return state.set('isFetching', false)
@@ -44,7 +36,7 @@ export const reducer = (state = initialState, action) => {
       return state.set('isFetchingUser', true)
 
     case actionTypes.USER_DETAILS_SUCCESS:
-      return state.set('isFetchingUser', 'false')
+      return state.set('isFetchingUser', false)
                   .set('user', fromJS(action.payload.user))
 
     case actionTypes.USER_DETAILS_FAILURE:

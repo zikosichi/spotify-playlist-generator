@@ -1,23 +1,23 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, all } from "redux-saga/effects";
 import axios from "axios"
 
-// Acitons
+// Actions
 import * as actionTypes from "./actionTypes"
 import * as actions from "./actions"
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export function* watcherSaga() {
-  yield [
+  yield all([
     takeLatest(actionTypes.API_CALL_REQUEST, searchSaga),
     takeLatest(actionTypes.USER_DETAILS_REQUEST, userSaga)
-  ]
+  ])
 }
 
 // function that makes the api request and returns a Promise for response
-function fetchData({ q, limit, append, nextUrl }) {
+function fetchData({ q, limit }) {
   return axios({
     method: "get",
-    url: nextUrl ? nextUrl : `https://api.spotify.com/v1/search?q=${q}&type=track,artist&limit=${limit}`
+    url: `https://api.spotify.com/v1/search?q=${q}&type=track,artist&limit=${limit}`
   });
 }
 
