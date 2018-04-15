@@ -10,19 +10,18 @@ class ResultsList extends React.Component {
 
     this.state = {
       currentlyPlaying: null,
-      activeItemId: null
     }
   }
 
   // Activate item
   handleItemActivation(item) {
-    this.setState({activeItemId: item.get('id')})
+    this.props.onItemHover(item)
   }
 
   render() {
-    const noResultContent = (
+    const noResultContent = key => (
       <div className="search-result__no-content">
-        No results found
+        No {key} found
       </div>
     )
 
@@ -52,17 +51,23 @@ class ResultsList extends React.Component {
                         </div>
                       )
                     })}
+                    {!this.props.isFetching && !this.props.resultItems.getIn([key, 'items']).size && noResultContent(key)}
                   </div>
                 </div>
               )
             })}
           </div>
         )}
-        {!this.props.isFetching && !this.props.resultItems.size && noResultContent}
       </div>
     )
   }
 }
+
+// Define types
+ResultsList.propTypes = {
+  activeItemId: PropTypes.string,
+  onItemHover: PropTypes.func,
+};
 
 // Map reducer props
 const mapStateToProps = state => ({

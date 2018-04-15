@@ -16,6 +16,7 @@ import './search-box.scss'
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { activeItemId: null }
 
     this.handleArrowNav = this.handleArrowNav.bind(this)
   }
@@ -42,7 +43,7 @@ class SearchBox extends React.Component {
 
   // On arrow up key press
   handleArrowNav(e) {
-    console.log('Arrow Up');
+    console.log(e);
   }
 
   // Perform search

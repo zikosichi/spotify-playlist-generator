@@ -89,6 +89,7 @@ class SearchInput extends React.Component {
   }
 }
 
+// Define types
 SearchInput.propTypes = {
   onArrowNavChange: PropTypes.func,
 };

@@ -20,11 +20,10 @@
 
 .search-result {
   &__no-content {
-    text-align: center;
-    text-transform: uppercase;
     font-weight: 200;
-    padding: 20px;
-    color: $ts-gray;
+    margin: 15px;
+    margin-top: 0;
+    color: rgba($ts-gray, .7);
 
     &--border-top {
       border-top: 1px solid $ts-light-gray;

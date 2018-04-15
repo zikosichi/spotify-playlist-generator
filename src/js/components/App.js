@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        {this.props.user ? this.props.user.get('display_name') : ''}
+        {/* {this.props.user ? this.props.user.get('display_name') : ''} */}
         <SearchBox></SearchBox>
       </div>
     )
