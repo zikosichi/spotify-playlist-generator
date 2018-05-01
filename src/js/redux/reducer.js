@@ -46,8 +46,6 @@ export const reducer = (state = initialState, action) => {
       return state.set('isFetchingUser', false)
 
     case actionTypes.SELECT_ITEM:
-      console.log(action.payload);
-
       return state.set('selectedItem', action.payload)
 
     case actionTypes.UPDATE_SEARCH_ACTIVE_ITEM:

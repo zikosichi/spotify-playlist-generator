@@ -4,7 +4,7 @@ import ResultItem from './ResultItem/ResultItem'
 import { connect } from 'react-redux'
 import './results-list.scss'
 
-import { updateSearchActiveItem, selectItem } from '../../../redux/actions'
+import { updateSearchActiveItem, selectItem, clearSearch } from '../../../redux/actions'
 
 class ResultsList extends React.Component {
   constructor() {
@@ -13,6 +13,11 @@ class ResultsList extends React.Component {
     this.state = {
       currentlyPlaying: null,
     }
+  }
+
+  handleItemSelect(item) {
+    this.props.selectItem(item)
+    this.props.clearSearch()
   }
 
   render() {
@@ -41,7 +46,7 @@ class ResultsList extends React.Component {
                       return(
                         <div onMouseEnter={() => this.props.updateSearchActiveItem({type: 'MOUSE_ENTER', item})}
                              className={item === this.props.activeSearchItem ? 'results-list__item--active' : ''}
-                             onClick={() => this.props.selectItem(item)}
+                             onClick={() => this.handleItemSelect(item)}
                              key={item.get('id')}
                              >
                           <ResultItem key={item.get('id')}
@@ -84,6 +89,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateSearchActiveItem: (payload) => dispatch(updateSearchActiveItem(payload)),
   selectItem: (payload) => dispatch(selectItem(payload)),
+  clearSearch: (payload) => dispatch(clearSearch(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsList)
