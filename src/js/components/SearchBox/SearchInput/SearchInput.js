@@ -7,7 +7,7 @@ import searchIcon from '../../../../assets/icons/search-icon.svg';
 import closeIcon from '../../../../assets/icons/close.svg';
 
 // Actions
-import { updateFieldValue, clearSearch } from '../../../redux/actions'
+import { updateFieldValue, clearSearch, updateSearchActiveItem } from '../../../redux/actions'
 
 // Styles
 import './search-input.scss';
@@ -32,11 +32,11 @@ class SearchInput extends React.Component {
   handleKeyDown(e) {
     if (e.keyCode === 38) {
       e.preventDefault()
-      this.props.onArrowNavChange(1)
+      this.props.updateSearchActiveItem({type: 'KEYBOARD', direction: 'UP'})
     }
     if (e.keyCode === 40) {
       e.preventDefault()
-      this.props.onArrowNavChange(-1)
+      this.props.updateSearchActiveItem({type: 'KEYBOARD', direction: 'DOWN'})
     }
   }
 
@@ -91,7 +91,9 @@ class SearchInput extends React.Component {
 
 // Define types
 SearchInput.propTypes = {
-  onArrowNavChange: PropTypes.func,
+  updateSearchActiveItem: PropTypes.func,
+  updateFieldValue: PropTypes.func,
+  clearSearch: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -100,8 +102,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  updateSearchActiveItem: (payload) => dispatch(updateSearchActiveItem(payload)),
   updateFieldValue: (field, value) => dispatch(updateFieldValue(field, value)),
-  clearSearch: () => dispatch(clearSearch())
+  clearSearch: () => dispatch(clearSearch()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)

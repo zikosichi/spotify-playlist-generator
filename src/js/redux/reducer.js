@@ -8,7 +8,9 @@ const initialState = fromJS({
   itemsPerPage: 5,
   currentlyPlayedUrl: '',
   isFetchingUser: false,
-  user: null
+  user: null,
+  activeSearchItem: null,
+  selectedItem: null,
 })
 
 export const reducer = (state = initialState, action) => {
@@ -20,6 +22,7 @@ export const reducer = (state = initialState, action) => {
 
     case actionTypes.API_CALL_REQUEST:
       return state.set('isFetching', true)
+                  .set('activeSearchItem', initialState.get('activeSearchItem'))
 
     case actionTypes.API_CALL_SUCCESS:
       return state.set('isFetching', false)
@@ -41,6 +44,32 @@ export const reducer = (state = initialState, action) => {
 
     case actionTypes.USER_DETAILS_FAILURE:
       return state.set('isFetchingUser', false)
+
+    case actionTypes.SELECT_ITEM:
+      console.log(action.payload);
+
+      return state.set('selectedItem', action.payload)
+
+    case actionTypes.UPDATE_SEARCH_ACTIVE_ITEM:
+      if (action.payload.type === 'MOUSE_ENTER') {
+        return state.set('activeSearchItem', action.payload.item)
+      }
+
+      let flattenedItems = state.get('items').keySeq().map(key => {
+        return state.get('items').getIn([key, 'items']);
+      }).flatten(true)
+
+      const currentIndex = state.get('activeSearchItem') ?
+        flattenedItems.findKey(item => item === state.get('activeSearchItem')) : -1
+
+      let nextIndex
+      if (action.payload.direction === 'UP') {
+        nextIndex = currentIndex <= 0 ? flattenedItems.toJS().length - 1 : currentIndex - 1
+      } else {
+        nextIndex = currentIndex === flattenedItems.toJS().length - 1 ? 0 : currentIndex + 1
+      }
+
+      return state.set('activeSearchItem', flattenedItems.get(nextIndex))
 
     default:
       return state

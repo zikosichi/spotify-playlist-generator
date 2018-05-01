@@ -4,6 +4,8 @@ import ResultItem from './ResultItem/ResultItem'
 import { connect } from 'react-redux'
 import './results-list.scss'
 
+import { updateSearchActiveItem, selectItem } from '../../../redux/actions'
+
 class ResultsList extends React.Component {
   constructor() {
     super()
@@ -11,19 +13,6 @@ class ResultsList extends React.Component {
     this.state = {
       currentlyPlaying: null,
     }
-
-    this.handleItemActivation = this.handleItemActivation.bind(this)
-    this.handleItemClick = this.handleItemClick.bind(this)
-  }
-
-  // Activate item
-  handleItemActivation(item) {
-    this.props.onItemHover(item)
-  }
-
-  // Activate item
-  handleItemClick() {
-    this.props.onItemSelect()
   }
 
   render() {
@@ -50,10 +39,10 @@ class ResultsList extends React.Component {
                   <div className="results-list__block__content">
                     {this.props.resultItems.getIn([key, 'items']).map((item) => {
                       return(
-                        <div onMouseEnter={() => this.handleItemActivation(item)}
-                             className={item.get('id') === this.props.activeItemId ? 'results-list__item--active' : ''}
+                        <div onMouseEnter={() => this.props.updateSearchActiveItem({type: 'MOUSE_ENTER', item})}
+                             className={item === this.props.activeSearchItem ? 'results-list__item--active' : ''}
+                             onClick={() => this.props.selectItem(item)}
                              key={item.get('id')}
-                             onClick={this.handleItemClick}
                              >
                           <ResultItem key={item.get('id')}
                                       item={item.toJS()}
@@ -75,9 +64,7 @@ class ResultsList extends React.Component {
 
 // Define types
 ResultsList.propTypes = {
-  activeItemId: PropTypes.string,
-  onItemHover: PropTypes.func,
-  onItemSelect: PropTypes.func,
+  activeSearchItem: PropTypes.object,
 };
 
 // Define types
@@ -89,7 +76,14 @@ ResultsList.defaultProps = {
 // Map reducer props
 const mapStateToProps = state => ({
   resultItems: state.get('items'),
-  isFetching: state.get('isFetching')
+  isFetching: state.get('isFetching'),
+  activeSearchItem: state.get('activeSearchItem'),
 })
 
-export default connect(mapStateToProps)(ResultsList)
+// Map reducer methods
+const mapDispatchToProps = dispatch => ({
+  updateSearchActiveItem: (payload) => dispatch(updateSearchActiveItem(payload)),
+  selectItem: (payload) => dispatch(selectItem(payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsList)

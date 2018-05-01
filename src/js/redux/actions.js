@@ -56,6 +56,16 @@ export function clearSearch() {
   }
 }
 
+/**
+ * Select Artist
+ */
+export function selectItem(payload) {
+  return {
+    type: actionTypes.SELECT_ITEM,
+    payload
+  }
+}
+
 // This function updates provided field in the store
 // With a given value. It can be used from many components
 export function updateFieldValue(field, value, parent = '') {
@@ -69,5 +79,15 @@ export function updateFieldValue(field, value, parent = '') {
     type: actionTypes.UPDATE_FIELD_VALUE,
     fields,
     value,
+  }
+}
+
+/**
+ * Clear search
+ */
+export function updateSearchActiveItem(payload) {
+  return {
+    type: actionTypes.UPDATE_SEARCH_ACTIVE_ITEM,
+    payload
   }
 }

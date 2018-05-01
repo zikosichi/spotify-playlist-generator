@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import AudioPlayer from '../../utils/audioPlayer'
+import _ from 'lodash'
 import { connect } from 'react-redux'
+import { fromJS } from 'immutable'
 
 // Components
 import SearchInput from './SearchInput/SearchInput'
@@ -16,10 +18,6 @@ import './search-box.scss'
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { activeItemId: null }
-
-    this.handleArrowNav = this.handleArrowNav.bind(this)
-    this.handleItemHover = this.handleItemHover.bind(this)
   }
 
   // Perform API call if searchString changes
@@ -42,16 +40,6 @@ class SearchBox extends React.Component {
     }
   }
 
-  // On arrow up key press
-  handleArrowNav(e) {
-    console.log(e);
-  }
-
-  // On arrow up key press
-  handleItemHover(item) {
-    this.setState({ activeItemId: item.get('id') })
-  }
-
   // Perform search
   performSearch(query) {
     const payload = {
@@ -65,10 +53,7 @@ class SearchBox extends React.Component {
   render() {
     const resultContent = (
       <div className="search-result__content">
-        <ResultsList resultItems={this.props.resultItems}
-                     onItemHover={this.handleItemHover}
-                     activeItemId={this.state.activeItemId}
-                     />
+        <ResultsList />
       </div>
     )
 
@@ -80,8 +65,7 @@ class SearchBox extends React.Component {
 
     return (
       <div>
-        <SearchInput onArrowNavChange={this.handleArrowNav}
-                   />
+        <SearchInput />
         {this.props.searchString && resultsBox}
       </div>
     )
