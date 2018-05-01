@@ -10,7 +10,7 @@ const initialState = fromJS({
   isFetchingUser: false,
   user: null,
   activeSearchItem: null,
-  selectedItem: null,
+  playlist: [],
 })
 
 export const reducer = (state = initialState, action) => {
@@ -45,8 +45,8 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.USER_DETAILS_FAILURE:
       return state.set('isFetchingUser', false)
 
-    case actionTypes.SELECT_ITEM:
-      return state.set('selectedItem', action.payload)
+    case actionTypes.ADD_ITEM:
+      return state.updateIn(['playlist'], list => list.push( action.payload))
 
     case actionTypes.UPDATE_SEARCH_ACTIVE_ITEM:
       if (action.payload.type === 'MOUSE_ENTER') {

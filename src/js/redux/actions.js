@@ -59,9 +59,9 @@ export function clearSearch() {
 /**
  * Select Artist
  */
-export function selectItem(payload) {
+export function addItem(payload) {
   return {
-    type: actionTypes.SELECT_ITEM,
+    type: actionTypes.ADD_ITEM,
     payload
   }
 }

@@ -4,7 +4,7 @@ import ResultItem from './ResultItem/ResultItem'
 import { connect } from 'react-redux'
 import './results-list.scss'
 
-import { updateSearchActiveItem, selectItem, clearSearch } from '../../../redux/actions'
+import { updateSearchActiveItem, addItem, clearSearch } from '../../../redux/actions'
 
 class ResultsList extends React.Component {
   constructor() {
@@ -16,7 +16,7 @@ class ResultsList extends React.Component {
   }
 
   handleItemSelect(item) {
-    this.props.selectItem(item)
+    this.props.addItem(item)
     this.props.clearSearch()
   }
 
@@ -88,7 +88,7 @@ const mapStateToProps = state => ({
 // Map reducer methods
 const mapDispatchToProps = dispatch => ({
   updateSearchActiveItem: (payload) => dispatch(updateSearchActiveItem(payload)),
-  selectItem: (payload) => dispatch(selectItem(payload)),
+  addItem: (payload) => dispatch(addItem(payload)),
   clearSearch: (payload) => dispatch(clearSearch(payload)),
 })
 
