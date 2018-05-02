@@ -42,6 +42,9 @@ class SearchInput extends React.Component {
       e.preventDefault()
       this.props.updateSearchActiveItem({type: 'KEYBOARD', direction: 'DOWN'})
     }
+    if (e.keyCode === 27) {
+      this.props.clearSearch()
+    }
   }
 
   // Handle input clear
