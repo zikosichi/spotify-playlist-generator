@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import magic from '../../../assets/icons/magic-wand.svg'
 
 // Styles
 import './playlist.scss'
@@ -28,6 +29,12 @@ class Playlist extends React.Component {
             {item.get('type') === 'track' ? trackArtists(item) : 'Artist'}
           </p>
         </div>
+
+        <div className="playlist__item__actions">
+          <button className="playlist__item__action">
+            <img src={magic}/>
+          </button>
+        </div>
       </div>
     )
 
@@ -36,7 +43,7 @@ class Playlist extends React.Component {
         {this.props.playlist.map((item) => {
           return(
             <div key={item.get('id')}>
-              {trackItem(item) }
+              {trackItem(item)}
               {/* <div><pre>{JSON.stringify(item, null, 2) }</pre></div> */}
             </div>
           )

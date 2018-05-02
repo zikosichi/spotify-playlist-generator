@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import micIcon from '../../../../../../assets/icons/music-player.svg'
-import playIcon from '../../../../../../assets/icons/play-button-icon.svg'
-import stopIcon from '../../../../../../assets/icons/stop.svg'
 import './result-avatar.scss';
 
 // Actions

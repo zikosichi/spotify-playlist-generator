@@ -38,5 +38,26 @@
         }
       }
     }
+
+    &__actions {
+      margin-left: auto;
+    }
+
+    &__action {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      img {
+        width: 20px;
+        transition: .2s all;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.1) rotate(135deg);
+        }
+      }
+    }
   }
 }
