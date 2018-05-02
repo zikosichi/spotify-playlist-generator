@@ -28,6 +28,16 @@ export const reducer = (state = initialState, action) => {
                   .set('activeSearchItem', initialState.get('activeSearchItem'))
 
     case actionTypes.API_CALL_SUCCESS:
+
+      for (const key in action.payload) {
+        if (action.payload.hasOwnProperty(key)) {
+          const element = action.payload[key];
+          element.items = element.items.filter(item =>
+            state.get('playlist').toJS().findIndex(x => x.id === item.id) === -1
+          ).slice(0, 5)
+        }
+      }
+
       return state.set('isFetching', false)
                   .set('items', fromJS(action.payload))
 

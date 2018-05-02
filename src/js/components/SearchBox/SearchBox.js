@@ -42,12 +42,7 @@ class SearchBox extends React.Component {
 
   // Perform search
   performSearch(query) {
-    const payload = {
-      q: query,
-      limit: this.props.itemsPerPage,
-    }
-
-    this.props.fetchDataRequest(payload)
+    this.props.fetchDataRequest({query})
   }
 
   render() {
