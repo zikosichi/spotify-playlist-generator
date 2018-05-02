@@ -1,7 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+// Styles
 import './playlist.scss'
+
+// Components
+import ResultAvatar from '../SearchBox/ResultsList/ResultItem/ResultAvatar/ResultAvatar';
 
 // Actions
 import { fetchUserRequest } from '../../redux/actions'
@@ -9,21 +13,36 @@ import { fetchUserRequest } from '../../redux/actions'
 class Playlist extends React.Component {
   render() {
 
-    const trackItem = (
-      <div>Track</div>
+    const trackArtists = (item) => {
+      return item.get('artists').toJS().map(a => a.name).join(', ')
+    }
+
+    const trackItem = (item) => (
+      <div className="playlist__item">
+        <ResultAvatar item={item.toJS()}/>
+        <div className="playlist__item__content">
+          <h3 className="playlist__item__content__title">
+            {item.get('name')}
+          </h3>
+          <p className="playlist__item__content__sub-title">
+            {trackArtists(item)}
+          </p>
+        </div>
+      </div>
     )
 
-    const artistItem = (
-      <div>Artist</div>
+    const artistItem = (item) => (
+      <div className="playlist__item">{item.get('name')}</div>
     )
 
     return (
       <div className="playlist">
         {this.props.playlist.map((item) => {
           return(
-            <div>
-              {item.get('type') === 'track' && trackItem }
-              {item.get('type') === 'artist' && artistItem }
+            <div key={item.get('id')}>
+              {item.get('type') === 'track' && trackItem(item) }
+              {item.get('type') === 'artist' && artistItem(item) }
+              <div><pre>{JSON.stringify(item, null, 2) }</pre></div>
             </div>
           )
         })}

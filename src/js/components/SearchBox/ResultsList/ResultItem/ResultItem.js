@@ -9,6 +9,10 @@ import './result-item.scss';
 
 class ResultItem extends React.Component {
   render() {
+    const trackArtists = (item) => {
+      return item.artists.map(a => a.name).join(', ')
+    }
+
     return (
       <div className="result">
         <ResultAvatar item={this.props.item}/>
@@ -17,7 +21,7 @@ class ResultItem extends React.Component {
             {this.props.item.name}
           </h3>
           <p className="result__content__sub-title">
-            {this.props.item.type}
+            {this.props.item.type === 'artist' ? this.props.item.type : trackArtists(this.props.item)}
           </p>
         </div>
       </div>
