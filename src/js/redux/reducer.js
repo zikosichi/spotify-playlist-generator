@@ -6,6 +6,7 @@ const initialState = fromJS({
   items: [],
   searchString: '',
   itemsPerPage: 5,
+  isSearchListVisible: false,
   currentlyPlayedUrl: '',
   isFetchingUser: false,
   user: null,
@@ -29,17 +30,20 @@ export const reducer = (state = initialState, action) => {
 
     case actionTypes.API_CALL_SUCCESS:
 
+      let isVisible = false;
       for (const key in action.payload) {
         if (action.payload.hasOwnProperty(key)) {
           const element = action.payload[key];
           element.items = element.items.filter(item =>
             state.get('playlist').toJS().findIndex(x => x.id === item.id) === -1
           ).slice(0, 5)
+          isVisible = element.items.length > 0
         }
       }
 
       return state.set('isFetching', false)
                   .set('items', fromJS(action.payload))
+                  .set('isSearchListVisible', isVisible)
 
     case actionTypes.API_CALL_FAILURE:
       return state.set('isFetching', false)
@@ -68,6 +72,7 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.CLEAR_SEARCH:
       return state.set('searchString', initialState.get('searchString'))
                   .set('items', initialState.get('items'))
+                  .set('isSearchListVisible', false)
 
     case actionTypes.USER_DETAILS_REQUEST:
       return state.set('isFetchingUser', true)

@@ -61,7 +61,8 @@ class SearchBox extends React.Component {
     return (
       <div>
         <SearchInput />
-        {this.props.searchString && resultsBox}
+        {this.props.isSearchListVisible}
+        {this.props.isSearchListVisible && resultsBox}
       </div>
     )
   }
@@ -72,7 +73,8 @@ const mapStateToProps = state => ({
   resultItems: state.get('items'),
   searchString: state.get('searchString'),
   itemsPerPage: state.get('itemsPerPage'),
-  currentlyPlayedUrl: state.get('currentlyPlayedUrl')
+  currentlyPlayedUrl: state.get('currentlyPlayedUrl'),
+  isSearchListVisible: state.get('isSearchListVisible'),
 })
 
 // Map reducer methods

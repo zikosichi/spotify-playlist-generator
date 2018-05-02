@@ -26,6 +26,10 @@ class SearchInput extends React.Component {
   // On search input change update
   handleChange(e) {
     this.props.updateFieldValue('searchString', e.target.value)
+
+    if (!e.target.value) {
+      this.props.clearSearch()
+    }
   }
 
   // If arrow keys were pressed
