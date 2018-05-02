@@ -69,7 +69,7 @@ function* suggestionsSaga(action) {
     const { data } = yield call(getSuggestions, action.payload)
     const filtered = data.tracks
                          .sort((a, b) => a.popularity > b.popularity ? -1 : 1)
-                         .filter(item => !!item.preview_url).slice(0, 5)
+                         .filter(item => !!item.preview_url)
 
     yield put(actions.getSuggestionsSuccess({ tracks: filtered, id: action.payload.get('id') }))
   } catch (error) {

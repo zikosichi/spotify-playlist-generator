@@ -47,6 +47,9 @@
       border: none;
       background-color: transparent;
       cursor: pointer;
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
 
       img {
         width: 20px;
@@ -56,6 +59,10 @@
       &:hover {
         img {
           transform: scale(1.1) rotate(135deg);
+        }
+
+        &.playlist__item__action--danger {
+          color: $ts-red;
         }
       }
     }

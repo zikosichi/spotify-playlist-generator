@@ -43,7 +43,11 @@ export const reducer = (state = initialState, action) => {
       const index = state.get('playlist').findIndex(i => i.get('id') === action.payload.id)
       const playlist = state.get('playlist').toJS()
 
-      playlist.splice(index + 1, 0, ...action.payload.tracks)
+      const filtered = action.payload.tracks.filter(item => {
+        return playlist.findIndex(x => x.id === item.id) === -1;
+      });
+
+      playlist.splice(index + 1, 0, ...filtered.slice(5))
 
       return state.set('isGettingSuggestions', false)
                   .set('playlist', fromJS(playlist))

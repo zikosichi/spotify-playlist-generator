@@ -31,13 +31,13 @@ class Playlist extends React.Component {
         </div>
 
         <div className="playlist__item__actions">
-          <button className="playlist__item__action"
+          <button className="playlist__item__action playlist__item__action--danger"
                   onClick={() => this.props.removePlaylistItem(item.get('id'))}>
             <i className="far fa-trash-alt"></i>
           </button>
-          <button className="playlist__item__action"
+          <button className="playlist__item__action playlist__item__action--primary"
                   onClick={() => this.props.getSuggestionsRequest(item)}>
-            <img src={magic}/>
+            <i className="fas fa-magic"></i>
           </button>
         </div>
       </div>
