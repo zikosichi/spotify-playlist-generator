@@ -5,7 +5,7 @@ import { client_id, callback_url, auth_url } from 'config/spotify'
 let access_token = Cookies.get('access_token')
 
 if (!window.location.hash && typeof access_token === 'undefined') {
-  const api_url = `${auth_url}?client_id=${client_id}&response_type=token&redirect_uri=${callback_url}`
+  const api_url = `${auth_url}?client_id=${client_id}&response_type=token&redirect_uri=${callback_url}&scope=playlist-modify-public`
   window.location.replace(api_url)
 }
 

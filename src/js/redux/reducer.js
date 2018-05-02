@@ -12,6 +12,8 @@ const initialState = fromJS({
   activeSearchItem: null,
   playlist: [],
   isGettingSuggestions: false,
+  isCreatingPlaylist: false,
+  playlistName: '',
 })
 
 export const reducer = (state = initialState, action) => {
@@ -89,6 +91,16 @@ export const reducer = (state = initialState, action) => {
 
     case actionTypes.REMOVE_PLAYLIST_ITEM:
       return state.set('playlist', state.get('playlist').filter(item => item.get('id') !== action.payload))
+
+    case actionTypes.API_CALL_REQUEST:
+      return state.set('isCreatingPlaylist', true)
+
+    case actionTypes.API_CALL_SUCCESS:
+      return state.set('isCreatingPlaylist', false)
+                  .set('playlistName', initialState.get('playlistName'))
+
+    case actionTypes.API_CALL_FAILURE:
+      return state.set('isCreatingPlaylist', false)
 
     default:
       return state

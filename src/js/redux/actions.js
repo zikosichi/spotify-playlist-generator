@@ -126,3 +126,29 @@ export function removePlaylistItem(payload) {
     payload
   }
 }
+
+
+
+/**
+ * Create Playlist
+ */
+export function createPlaylistRequest(payload) {
+  return {
+    type: actionTypes.CREATE_PLAYLIST_REQUEST,
+    payload
+  }
+}
+
+export function createPlaylistSuccess(payload) {
+  return {
+    type: actionTypes.CREATE_PLAYLIST_SUCCESS,
+    payload,
+  }
+}
+
+export function createPlaylistFailure(error) {
+  return {
+    type: actionTypes.CREATE_PLAYLIST_FAILURE,
+    error,
+  }
+}

@@ -11,6 +11,7 @@ export function* watcherSaga() {
     takeLatest(actionTypes.API_CALL_REQUEST, searchSaga),
     takeLatest(actionTypes.USER_DETAILS_REQUEST, userSaga),
     takeLatest(actionTypes.GET_SUGGESTIONS_REQUEST, suggestionsSaga),
+    takeLatest(actionTypes.CREATE_PLAYLIST_REQUEST, createPlaylistSaga),
   ])
 }
 
@@ -73,5 +74,37 @@ function* suggestionsSaga(action) {
     yield put(actions.getSuggestionsSuccess({ tracks: filtered, id: action.payload.get('id') }))
   } catch (error) {
     yield put(actions.getSuggestionsFailure(error))
+  }
+}
+
+// Create playlist
+function createPlaylist(userId, name) {
+  return axios({
+    method: "post",
+    url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+    data: { name }
+  });
+}
+
+// Add tracks to playlist
+function addToPlaylist(userId, playlistId, uris) {
+  return axios({
+    method: "post",
+    url: `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+    data: { uris }
+  });
+}
+
+function* createPlaylistSaga(action) {
+  console.log(action);
+  try {
+    const { data } = yield call(createPlaylist, action.payload.id, action.payload.name)
+    const uris = action.payload.playlist.filter(item => item.type === 'track').map(item => item.uri)
+
+    const { playlist } = yield call(addToPlaylist, action.payload.id, data.id, uris)
+
+    yield put(actions.createPlaylistSuccess())
+  } catch (error) {
+    yield put(actions.createPlaylistFailure(error))
   }
 }
