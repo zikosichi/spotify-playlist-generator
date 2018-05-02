@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 /**
- * Fetch User details
+ * Get search items
  */
 export function fetchDataRequest(payload) {
   return {
@@ -23,6 +23,31 @@ export function fetchDataFailure(error) {
     error,
   }
 }
+
+/**
+ * Get item suggestions
+ */
+export function getSuggestionsRequest(payload) {
+  return {
+    type: actionTypes.GET_SUGGESTIONS_REQUEST,
+    payload
+  }
+}
+
+export function getSuggestionsSuccess(payload) {
+  return {
+    type: actionTypes.GET_SUGGESTIONS_SUCCESS,
+    payload,
+  }
+}
+
+export function getSuggestionsFailure(error) {
+  return {
+    type: actionTypes.GET_SUGGESTIONS_FAILURE,
+    error,
+  }
+}
+
 
 /**
  * Fetch User details

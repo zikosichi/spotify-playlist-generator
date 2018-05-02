@@ -11,6 +11,7 @@ const initialState = fromJS({
   user: null,
   activeSearchItem: null,
   playlist: [],
+  isGettingSuggestions: false,
 })
 
 export const reducer = (state = initialState, action) => {
@@ -31,6 +32,23 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.API_CALL_FAILURE:
       return state.set('isFetching', false)
 
+
+    case actionTypes.GET_SUGGESTIONS_REQUEST:
+      return state.set('isGettingSuggestions', true)
+
+    case actionTypes.GET_SUGGESTIONS_SUCCESS:
+
+      const index = state.get('playlist').findIndex(i => i.get('id') === action.payload.id)
+      const playlist = state.get('playlist').toJS()
+
+      playlist.splice(index + 1, 0, ...action.payload.tracks)
+
+      return state.set('isGettingSuggestions', false)
+                  .set('playlist', fromJS(playlist))
+
+    case actionTypes.GET_SUGGESTIONS_FAILURE:
+      return state.set('isGettingSuggestions', false)
+
     case actionTypes.CLEAR_SEARCH:
       return state.set('searchString', initialState.get('searchString'))
                   .set('items', initialState.get('items'))
@@ -46,7 +64,7 @@ export const reducer = (state = initialState, action) => {
       return state.set('isFetchingUser', false)
 
     case actionTypes.ADD_ITEM:
-      return state.updateIn(['playlist'], list => list.unshift( action.payload))
+      return state.updateIn(['playlist'], list => list.unshift(action.payload))
 
     case actionTypes.UPDATE_SEARCH_ACTIVE_ITEM:
       if (action.payload.type === 'MOUSE_ENTER') {

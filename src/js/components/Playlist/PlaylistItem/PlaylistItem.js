@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+// Styles
 import './playlist-item.scss'
 
 // Actions

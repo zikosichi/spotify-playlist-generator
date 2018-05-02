@@ -9,7 +9,8 @@ import * as actions from "./actions"
 export function* watcherSaga() {
   yield all([
     takeLatest(actionTypes.API_CALL_REQUEST, searchSaga),
-    takeLatest(actionTypes.USER_DETAILS_REQUEST, userSaga)
+    takeLatest(actionTypes.USER_DETAILS_REQUEST, userSaga),
+    takeLatest(actionTypes.GET_SUGGESTIONS_REQUEST, suggestionsSaga),
   ])
 }
 
@@ -48,5 +49,29 @@ function* userSaga(action) {
     yield put(actions.fetchUserSuccess({ user: data }))
   } catch (error) {
     yield put(actions.fetchDataFailure(error))
+  }
+}
+
+// Get item suggestions
+function getSuggestions(item) {
+  let query = item.get('type') === 'track' ? 'seed_tracks=' : 'seed_artists='
+  query += item.get('id')
+
+  return axios({
+    method: "get",
+    url: `https://api.spotify.com/v1/recommendations?limit=50&${query}`
+  });
+}
+
+function* suggestionsSaga(action) {
+  try {
+    const { data } = yield call(getSuggestions, action.payload)
+    const filtered = data.tracks
+                         .sort((a, b) => a.popularity > b.popularity ? -1 : 1)
+                         .filter(item => !!item.preview_url).slice(0, 5)
+
+    yield put(actions.getSuggestionsSuccess({ tracks: filtered, id: action.payload.get('id') }))
+  } catch (error) {
+    yield put(actions.getSuggestionsFailure(error))
   }
 }

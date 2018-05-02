@@ -9,7 +9,7 @@ import './playlist.scss'
 import ResultAvatar from '../SearchBox/ResultsList/ResultItem/ResultAvatar/ResultAvatar';
 
 // Actions
-import { fetchUserRequest } from '../../redux/actions'
+import { getSuggestionsRequest } from '../../redux/actions'
 
 class Playlist extends React.Component {
   render() {
@@ -31,7 +31,8 @@ class Playlist extends React.Component {
         </div>
 
         <div className="playlist__item__actions">
-          <button className="playlist__item__action">
+          <button className="playlist__item__action"
+                  onClick={() => this.props.getSuggestionsRequest(item)}>
             <img src={magic}/>
           </button>
         </div>
@@ -60,7 +61,7 @@ const mapStateToProps = state => ({
 
 // Map reducer methods
 const mapDispatchToProps = dispatch => ({
-  fetchUserDetails: () => dispatch(fetchUserRequest()),
+  getSuggestionsRequest: (payload) => dispatch(getSuggestionsRequest(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
