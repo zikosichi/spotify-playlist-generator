@@ -87,6 +87,9 @@ export const reducer = (state = initialState, action) => {
 
       return state.set('activeSearchItem', flattenedItems.get(nextIndex))
 
+    case actionTypes.REMOVE_PLAYLIST_ITEM:
+      return state.set('playlist', state.get('playlist').filter(item => item.get('id') !== action.payload))
+
     default:
       return state
   }

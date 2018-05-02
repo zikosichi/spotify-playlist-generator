@@ -116,3 +116,13 @@ export function updateSearchActiveItem(payload) {
     payload
   }
 }
+
+/**
+ * Remove playlist item
+ */
+export function removePlaylistItem(payload) {
+  return {
+    type: actionTypes.REMOVE_PLAYLIST_ITEM,
+    payload
+  }
+}

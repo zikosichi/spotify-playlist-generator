@@ -9,7 +9,7 @@ import './playlist.scss'
 import ResultAvatar from '../SearchBox/ResultsList/ResultItem/ResultAvatar/ResultAvatar';
 
 // Actions
-import { getSuggestionsRequest } from '../../redux/actions'
+import { getSuggestionsRequest, removePlaylistItem } from '../../redux/actions'
 
 class Playlist extends React.Component {
   render() {
@@ -32,6 +32,10 @@ class Playlist extends React.Component {
 
         <div className="playlist__item__actions">
           <button className="playlist__item__action"
+                  onClick={() => this.props.removePlaylistItem(item.get('id'))}>
+            <i className="far fa-trash-alt"></i>
+          </button>
+          <button className="playlist__item__action"
                   onClick={() => this.props.getSuggestionsRequest(item)}>
             <img src={magic}/>
           </button>
@@ -45,7 +49,6 @@ class Playlist extends React.Component {
           return(
             <div key={item.get('id')}>
               {trackItem(item)}
-              {/* <div><pre>{JSON.stringify(item, null, 2) }</pre></div> */}
             </div>
           )
         })}
@@ -62,6 +65,7 @@ const mapStateToProps = state => ({
 // Map reducer methods
 const mapDispatchToProps = dispatch => ({
   getSuggestionsRequest: (payload) => dispatch(getSuggestionsRequest(payload)),
+  removePlaylistItem: (payload) => dispatch(removePlaylistItem(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
