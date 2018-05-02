@@ -25,14 +25,10 @@ class Playlist extends React.Component {
             {item.get('name')}
           </h3>
           <p className="playlist__item__content__sub-title">
-            {trackArtists(item)}
+            {item.get('type') === 'track' ? trackArtists(item) : 'Artist'}
           </p>
         </div>
       </div>
-    )
-
-    const artistItem = (item) => (
-      <div className="playlist__item">{item.get('name')}</div>
     )
 
     return (
@@ -40,9 +36,8 @@ class Playlist extends React.Component {
         {this.props.playlist.map((item) => {
           return(
             <div key={item.get('id')}>
-              {item.get('type') === 'track' && trackItem(item) }
-              {item.get('type') === 'artist' && artistItem(item) }
-              <div><pre>{JSON.stringify(item, null, 2) }</pre></div>
+              {trackItem(item) }
+              {/* <div><pre>{JSON.stringify(item, null, 2) }</pre></div> */}
             </div>
           )
         })}

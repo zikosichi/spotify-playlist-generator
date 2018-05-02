@@ -46,7 +46,7 @@ export const reducer = (state = initialState, action) => {
       return state.set('isFetchingUser', false)
 
     case actionTypes.ADD_ITEM:
-      return state.updateIn(['playlist'], list => list.push( action.payload))
+      return state.updateIn(['playlist'], list => list.unshift( action.payload))
 
     case actionTypes.UPDATE_SEARCH_ACTIVE_ITEM:
       if (action.payload.type === 'MOUSE_ENTER') {
