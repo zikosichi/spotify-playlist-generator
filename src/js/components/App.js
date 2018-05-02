@@ -9,7 +9,8 @@ import { connect } from 'react-redux'
 import { fetchUserRequest } from '../redux/actions'
 
 // Components
-import SearchBox from 'components/SearchBox/SearchBox'
+import SearchBox from './SearchBox/SearchBox'
+import Playlist from './Playlist/Playlist'
 
 class App extends React.Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
       <div className="container">
         {/* {this.props.user ? this.props.user.get('display_name') : ''} */}
         <SearchBox></SearchBox>
+        <Playlist></Playlist>
       </div>
     )
   }

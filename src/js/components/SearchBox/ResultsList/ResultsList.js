@@ -31,7 +31,6 @@ class ResultsList extends React.Component {
       <div>
         {this.props.resultItems.size > 0 && (
           <div className="results-list">
-
             {this.props.resultItems.keySeq().map(key => {
               return (
                 <div className="results-list__block"
