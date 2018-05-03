@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import ResultAvatar from './ResultAvatar/ResultAvatar';
+import Preview from '../../../Preview/Preview';
 
 // Styles
 import './result-item.scss';
@@ -24,6 +25,10 @@ class ResultItem extends React.Component {
             {this.props.item.type === 'artist' ? this.props.item.type : trackArtists(this.props.item)}
           </p>
         </div>
+        {
+          this.props.item.preview_url &&
+          <Preview previewUrl={this.props.item.preview_url}></Preview>
+        }
       </div>
     )
   }
