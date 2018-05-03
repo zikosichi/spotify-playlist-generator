@@ -23,6 +23,7 @@
     background-color: $ts-dark;
     background: linear-gradient(-30deg, $ts-dark, $ts-dark + 55);
     position: relative;
+    overflow: hidden;
     box-shadow: inset 0 0 30px rgba($ts-dark, .2);
 
     &__container {
