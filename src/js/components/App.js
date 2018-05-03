@@ -46,7 +46,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <header className="app__header">
-          <div className="container">
+          <div className="container app__header__container">
             <div className="app__topbar">
               {logo}
               {user}
