@@ -7,7 +7,7 @@ Used Redux, Redux-saga, immutable, axios ([Live Demo hosted on Github Pages](htt
 This was initial implementation of the given that is not using Redux
 ([Branch](https://github.com/zikosichi/frontend-assessment/tree/react-only/))
 
-![alt text](https://github.com/zikosichi/frontend-assessment/blob/master/preview.gif?raw=true "Preview")
+![alt text](https://raw.githubusercontent.com/zikosichi/spotify-playlist-generator/master/preview.gif "Preview")
 
 # TicketSwap assessment
 Thank you for doing our frontend assessment. The goal of the assessment would be to create a simple yet full experience Spotify search. We already setup some things for you, including build tools (js and css), React basic setup, Spotify auth redirect and a Spotify API helper. So you can focus on the frontend only. If you have any questions you can always [contact us](mailto:rob@ticketswap.com).
