@@ -1,9 +1,17 @@
 @import '../../../css/variables';
 
 .search-result {
-  border: 1px solid $ts-light-gray;
-  border-radius: 4px;
-  background-color: $ts-white;
+  position: relative;
+
+  &__content {
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: $ts-white;
+    position: absolute;
+    margin-top: 15px;
+    width: 100%;
+    box-shadow: 0 1px 1px 0 rgba($ts-dark, 0.16);
+  }
 
   @media screen and (max-width: $break-md) {
     margin-right: 0;

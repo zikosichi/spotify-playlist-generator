@@ -3,10 +3,9 @@
 body {
   @import './bs-overrides';
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   background: $ts-light;
   color: $ts-dark;
-  padding-top: 100px;
   padding-bottom: 50px;
 
   @media screen and (max-width: $break-md) {

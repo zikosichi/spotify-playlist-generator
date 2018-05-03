@@ -5,6 +5,9 @@ import initInterceptor from 'utils/interceptor'
 
 import { connect } from 'react-redux'
 
+// Styles
+import './app.scss'
+
 // Actions
 import { fetchUserRequest } from '../redux/actions'
 
@@ -12,6 +15,9 @@ import { fetchUserRequest } from '../redux/actions'
 import SearchBox from './SearchBox/SearchBox'
 import Playlist from './Playlist/Playlist'
 import Export from './Export/Export'
+
+// Assets
+import logoIcon from '../../assets/icons/play-button.svg'
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,12 +30,37 @@ class App extends React.Component {
   }
 
   render() {
+    const logo = (
+      <div className="app__logo">
+        <img src={logoIcon}
+             className="app__logo__img"/>
+        Playlist Generator
+      </div>
+    )
+
+    const user = (
+      <div className="app__user">
+        Hey, {this.props.user ? this.props.user.get('display_name') : ''}
+      </div>
+    )
+
     return (
-      <div className="container">
-        {this.props.user ? this.props.user.get('display_name') : ''}
-        <SearchBox></SearchBox>
-        <Playlist></Playlist>
-        <Export></Export>
+      <div className="app">
+        <header className="app__header">
+          <div className="container">
+            <div className="app__topbar">
+              {logo}
+              {user}
+            </div>
+            <div className="search-box">
+              <SearchBox></SearchBox>
+            </div>
+          </div>
+        </header>
+        <div className="container">
+          <Playlist></Playlist>
+          <Export></Export>
+        </div>
       </div>
     )
   }
