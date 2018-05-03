@@ -13,16 +13,18 @@ class Preview extends React.Component {
   constructor(props) {
     super(props)
 
-    this.handleTogglePlay = this.handleTogglePlay.bind(this)
+    this.handlePlay = this.handlePlay.bind(this)
+    this.handleStop = this.handleStop.bind(this)
   }
 
-  // On play click
-  handleTogglePlay() {
-    if (this.props.currentlyPlayedUrl === this.props.previewUrl) {
-      this.props.updateFieldValue('currentlyPlayedUrl', null);
-    } else {
-      this.props.updateFieldValue('currentlyPlayedUrl', this.props.previewUrl);
-    }
+  // Play on mouseover
+  handlePlay() {
+    this.props.updateFieldValue('currentlyPlayedUrl', this.props.previewUrl);
+  }
+
+  // Stop on mouseleave
+  handleStop() {
+    this.props.updateFieldValue('currentlyPlayedUrl', null);
   }
 
   // Stop preview on component destroy
@@ -35,8 +37,8 @@ class Preview extends React.Component {
   render() {
     const playBtn = (
       <div className="preview"
-           onMouseEnter={this.handleTogglePlay}
-           onMouseLeave={this.handleTogglePlay}>
+           onMouseEnter={this.handlePlay}
+           onMouseLeave={this.handleStop}>
         {
           this.props.currentlyPlayedUrl === this.props.previewUrl ?
           <StopCircle size={20}></StopCircle> :
