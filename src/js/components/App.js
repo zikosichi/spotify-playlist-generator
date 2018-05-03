@@ -67,7 +67,7 @@ class App extends React.Component {
 // Map reducer props
 const mapStateToProps = state => ({
   isFetchingUser: state.get('isFetchingUser'),
-  user: state.get('user')
+  user: state.get('user'),
 })
 
 // Map reducer methods

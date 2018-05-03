@@ -1,5 +1,25 @@
 @import '../../../css/variables';
 
+.empty {
+  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__img {
+    width: 100px;
+  }
+
+  &__text {
+    font-size: 24px;
+    max-width: 400px;
+    font-weight: 200;
+    margin-top: 15px;
+    text-align: center;
+    color: rgba($ts-dark, .5);
+  }
+}
+
 .playlist {
   background-color: $ts-white;
   margin-top: 15px;

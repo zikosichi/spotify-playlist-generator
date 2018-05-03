@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import magic from '../../../assets/icons/magic-wand.svg'
+import rock from '../../../assets/icons/rock.svg'
 import { Trash, Radio, Edit } from 'react-feather';
 
 // Styles
@@ -60,30 +61,42 @@ class Playlist extends React.Component {
       </div>
     )
 
-    return (
-      <div className="playlist">
-        {this.props.playlist.size > 0 && (
-          <div className="playlist__header">
-            <div className="playlist__title">
-              <Edit size={15} color="#E5E7E8"></Edit>
-              <input type="text"
-                     className="ml-2"
-                     value={this.props.playlistName}
-                     onChange={this.handleChange} />
-            </div>
-            <div className="playlist__export">
-              <Export></Export>
-            </div>
-          </div>
-        )}
+    const empty = (
+      <div className="empty">
+        <img className="empty__img" src={rock}/>
+        <p className="empty__text">
+          Add an artist or a track to start generating your playlist
+        </p>
+      </div>
+    )
 
-        {this.props.playlist.map((item) => {
-          return(
-            <div key={item.get('id')}>
-              {trackItem(item)}
+    return (
+      <div>
+        {this.props.playlist.size === 0 && empty}
+        <div className="playlist">
+          {this.props.playlist.size > 0 && (
+            <div className="playlist__header">
+              <div className="playlist__title">
+                <Edit size={15} color="#E5E7E8"></Edit>
+                <input type="text"
+                      className="ml-2"
+                      value={this.props.playlistName}
+                      onChange={this.handleChange} />
+              </div>
+              <div className="playlist__export">
+                <Export></Export>
+              </div>
             </div>
-          )
-        })}
+          )}
+
+          {this.props.playlist.map((item) => {
+            return(
+              <div key={item.get('id')}>
+                {trackItem(item)}
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
