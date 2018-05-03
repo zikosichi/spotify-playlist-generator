@@ -2,13 +2,21 @@
 
 .playlist {
   background-color: $ts-white;
+  margin-top: 15px;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px 0 rgba($ts-dark, 0.16);
 
   &__item {
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    transition: all .15s;
+    // transition: all .15s;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgba($ts-light-gray, .1);
+    }
 
     &__content {
       display: flex;
@@ -41,6 +49,7 @@
 
     &__actions {
       margin-left: auto;
+      flex-shrink: 0;
     }
 
     &__action {
@@ -50,6 +59,7 @@
       width: 30px;
       height: 30px;
       margin-left: 10px;
+      transition: all .1s;
 
       img {
         width: 20px;
@@ -61,8 +71,12 @@
           transform: scale(1.1) rotate(135deg);
         }
 
-        &.playlist__item__action--danger {
+        &.playlist__item__action--remove {
           color: $ts-red;
+        }
+
+        &.playlist__item__action--magic {
+          color: $ts-blue;
         }
       }
     }

@@ -5,9 +5,8 @@
   height: 35px;
   flex-shrink: 0;
   position: relative;
-  border-radius: 3px;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 5px;
   overflow: hidden;
   position: relative;
 
@@ -23,26 +22,6 @@
 
   &--round {
     border-radius: 50%;
-  }
-
-  &__play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-
-    &--play, &--stop {
-      color: #fff;
-      text-shadow: 0 1px 0 rgba($ts-dark, .8);
-      transition: transform .2s;
-    }
-  }
-
-  &:hover {
-    .avatar-box__play img {
-      transform: scale(1.1);
-    }
   }
 }
 

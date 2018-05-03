@@ -1,0 +1,10 @@
+@import '../../../css/variables';
+
+
+.preview {
+  display: inline-block;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

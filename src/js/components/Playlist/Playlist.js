@@ -7,6 +7,7 @@ import './playlist.scss'
 
 // Components
 import ResultAvatar from '../SearchBox/ResultsList/ResultItem/ResultAvatar/ResultAvatar';
+import Preview from '../Preview/Preview';
 
 // Actions
 import { getSuggestionsRequest, removePlaylistItem } from '../../redux/actions'
@@ -19,7 +20,7 @@ class Playlist extends React.Component {
     }
 
     const trackItem = (item) => (
-      <div className="playlist__item">
+      <div className={`playlist__item playlist__item--${item.get('type')}`}>
         <ResultAvatar item={item.toJS()}/>
         <div className="playlist__item__content">
           <h3 className="playlist__item__content__title">
@@ -31,13 +32,18 @@ class Playlist extends React.Component {
         </div>
 
         <div className="playlist__item__actions">
-          <button className="playlist__item__action playlist__item__action--danger"
-                  onClick={() => this.props.removePlaylistItem(item.get('id'))}>
-            <i className="far fa-trash-alt"></i>
-          </button>
-          <button className="playlist__item__action playlist__item__action--primary"
+          {item.get('preview_url') && (
+            <button className="playlist__item__action">
+              <Preview previewUrl={item.get('preview_url')}></Preview>
+            </button>
+          )}
+          <button className="playlist__item__action playlist__item__action--magic"
                   onClick={() => this.props.getSuggestionsRequest(item)}>
             <i className="fas fa-magic"></i>
+          </button>
+          <button className="playlist__item__action playlist__item__action--remove"
+                  onClick={() => this.props.removePlaylistItem(item.get('id'))}>
+            <i className="far fa-trash-alt"></i>
           </button>
         </div>
       </div>

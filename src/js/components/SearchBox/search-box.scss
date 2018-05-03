@@ -2,6 +2,7 @@
 
 .search-result {
   position: relative;
+  z-index: 5;
 
   &__content {
     border-radius: 7px;
