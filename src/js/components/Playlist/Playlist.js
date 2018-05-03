@@ -85,7 +85,7 @@ class Playlist extends React.Component {
                    className="info__img"/>
               <p className="info__text">
                 <b className="text-primary">1. </b>
-                Search for your favorite songs or artist and select
+                Search and Select your favourite songs and artists
               </p>
             </div>
             <div className="col info__col">
@@ -93,7 +93,7 @@ class Playlist extends React.Component {
                    className="info__img"/>
               <p className="info__text">
                 <b className="text-primary">2. </b>
-                Click the magic button that will populate the list
+                Clicking this magic button & 5 similar tracks will be added to your playlist
               </p>
             </div>
             <div className="col info__col">
@@ -101,7 +101,7 @@ class Playlist extends React.Component {
                    className="info__img"/>
               <p className="info__text">
                 <b className="text-primary">3. </b>
-                Set the name of playlist and click "Export to Spotify"
+                Set the name of the playlist and click "Export to Spotify"
               </p>
             </div>
           </div>
