@@ -44,7 +44,7 @@ class App extends React.Component {
     )
 
     return (
-      <div className="app">
+      <div className={`app ${this.props.playlist.size === 0 && ' app--empty'}`}>
         <header className="app__header">
           <div className="container app__header__container">
             <div className="app__topbar row">
@@ -61,7 +61,7 @@ class App extends React.Component {
           </div>
           <div className="app__header__pattern"></div>
         </header>
-        <div className="container">
+        <div className="app__playlist container">
           <Playlist></Playlist>
         </div>
       </div>
@@ -73,6 +73,7 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   isFetchingUser: state.get('isFetchingUser'),
   user: state.get('user'),
+  playlist: state.get('playlist'),
 })
 
 // Map reducer methods
