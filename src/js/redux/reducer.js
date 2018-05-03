@@ -117,7 +117,6 @@ export const reducer = (state = initialState, action) => {
 
     case actionTypes.CREATE_PLAYLIST_SUCCESS:
       return state.set('isCreatingPlaylist', false)
-                  .set('playlistName', initialState.get('playlistName'))
                   .set('createdPlaylist', action.payload)
 
     case actionTypes.CREATE_PLAYLIST_FAILURE:

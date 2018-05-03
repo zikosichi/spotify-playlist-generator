@@ -32,24 +32,23 @@ class Export extends React.Component {
          href={this.props.createdPlaylist && this.props.createdPlaylist.external_urls.spotify}
          target="_blank"
          className="export__btn">
-        Open
+        Open in Spotify
         <i className="fas fa-external-link-alt ml-2"></i>
       </a>
     )
 
     const exportBtn = (
       <button onClick={this.handleSubmit}
-              className="export__btn">
-        Export
+              className="export__btn ml-2">
+        Export to Spotify
         {this.props.isCreatingPlaylist && <i className="fa fa-spinner fa-spin ml-2"></i>}
       </button>
     )
 
-    const btn = this.props.createdPlaylist ? openBtn : exportBtn
-
     return (
       <div>
-        {this.tracksLength() > 0 && btn}
+        {this.props.createdPlaylist && openBtn}
+        {this.tracksLength() > 0 && exportBtn}
       </div>
     )
   }
