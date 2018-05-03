@@ -11,7 +11,7 @@
   }
 
   &__text {
-    font-size: 24px;
+    font-size: 18px;
     max-width: 400px;
     font-weight: 200;
     margin-top: 15px;
@@ -147,6 +147,28 @@
         }
       }
     }
+  }
+}
+
+.info {
+  padding: 30px 15px;
+  background-color: $ts-white;
+  border-radius: 7px;
+  box-shadow: 0 1px 1px 0 rgba($ts-dark, 0.16);
+
+  &__col {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  &__img {
+    height: 60px;
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    padding: 10px;
   }
 }
 

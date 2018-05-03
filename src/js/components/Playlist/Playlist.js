@@ -1,11 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import magic from '../../../assets/icons/magic-wand.svg'
-import rock from '../../../assets/icons/rock.svg'
 import { Trash, Radio, Edit } from 'react-feather';
 
 // Styles
 import './playlist.scss'
+
+// Images
+import magic from '../../../assets/icons/magic-wand.svg'
+import rock from '../../../assets/icons/rock.svg'
+import singer from '../../../assets/icons/singer.svg'
+import radio from '../../../assets/icons/radio.svg'
+import exportIcon from '../../../assets/icons/export.svg'
 
 // Components
 import ResultAvatar from '../SearchBox/ResultsList/ResultItem/ResultAvatar/ResultAvatar';
@@ -65,11 +70,42 @@ class Playlist extends React.Component {
     )
 
     const empty = (
-      <div className="empty">
-        <img className="empty__img" src={rock}/>
-        <p className="empty__text">
-          Add an artist or a track to start generating your playlist
-        </p>
+      <div>
+        <div className="empty">
+          <img className="empty__img" src={rock}/>
+          <p className="empty__text">
+            Start search up there
+          </p>
+        </div>
+
+        <div className="info">
+          <div className="row">
+            <div className="col info__col">
+              <img src={singer}
+                   className="info__img"/>
+              <p className="info__text">
+                <b className="text-primary">1. </b>
+                Search for your favorite songs or artist and select
+              </p>
+            </div>
+            <div className="col info__col">
+              <img src={radio}
+                   className="info__img"/>
+              <p className="info__text">
+                <b className="text-primary">2. </b>
+                Click the magic button that will populate the list
+              </p>
+            </div>
+            <div className="col info__col">
+              <img src={exportIcon}
+                   className="info__img"/>
+              <p className="info__text">
+                <b className="text-primary">3. </b>
+                Set the name of playlist and click "Export to Spotify"
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     )
 
