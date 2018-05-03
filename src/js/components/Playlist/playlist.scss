@@ -10,7 +10,7 @@
   &__header {
     display: flex;
     padding: 15px;
-    border-bottom: 1px solid $ts-light-gray;
+    // border-bottom: 1px solid $ts-light-gray;
     align-items: center;
   }
 
@@ -47,6 +47,10 @@
         transform: translateX(100%);
         opacity: 1;
       }
+    }
+
+    &--artist {
+      border-top: 1px solid $ts-light-gray;
     }
 
     &__content {
