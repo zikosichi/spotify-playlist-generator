@@ -96,14 +96,13 @@ function addToPlaylist(userId, playlistId, uris) {
 }
 
 function* createPlaylistSaga(action) {
-  console.log(action);
   try {
     const { data } = yield call(createPlaylist, action.payload.id, action.payload.name)
     const uris = action.payload.playlist.filter(item => item.type === 'track').map(item => item.uri)
 
-    const { playlist } = yield call(addToPlaylist, action.payload.id, data.id, uris)
+    const playlist = yield call(addToPlaylist, action.payload.id, data.id, uris)
 
-    yield put(actions.createPlaylistSuccess())
+    yield put(actions.createPlaylistSuccess(data))
   } catch (error) {
     yield put(actions.createPlaylistFailure(error))
   }

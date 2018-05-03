@@ -15,6 +15,7 @@ const initialState = fromJS({
   isGettingSuggestions: false,
   isCreatingPlaylist: false,
   playlistName: 'Generated Playlist',
+  createdPlaylist: null,
 })
 
 export const reducer = (state = initialState, action) => {
@@ -111,14 +112,17 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.REMOVE_PLAYLIST_ITEM:
       return state.set('playlist', state.get('playlist').filter(item => item.get('id') !== action.payload))
 
-    case actionTypes.API_CALL_REQUEST:
+    case actionTypes.CREATE_PLAYLIST_REQUEST:
       return state.set('isCreatingPlaylist', true)
 
-    case actionTypes.API_CALL_SUCCESS:
+    case actionTypes.CREATE_PLAYLIST_SUCCESS:
+    console.log(action.payload);
+    
       return state.set('isCreatingPlaylist', false)
                   .set('playlistName', initialState.get('playlistName'))
+                  .set('createdPlaylist', action.payload)
 
-    case actionTypes.API_CALL_FAILURE:
+    case actionTypes.CREATE_PLAYLIST_FAILURE:
       return state.set('isCreatingPlaylist', false)
 
     default:
