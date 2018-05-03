@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import magic from '../../../assets/icons/magic-wand.svg'
-import { Trash, Radio } from 'react-feather';
+import { Trash, Radio, Edit } from 'react-feather';
 
 // Styles
 import './playlist.scss'
@@ -9,11 +9,21 @@ import './playlist.scss'
 // Components
 import ResultAvatar from '../SearchBox/ResultsList/ResultItem/ResultAvatar/ResultAvatar';
 import Preview from '../Preview/Preview';
+import Export from '../Export/Export';
 
 // Actions
-import { getSuggestionsRequest, removePlaylistItem } from '../../redux/actions'
+import { updateFieldValue, getSuggestionsRequest, removePlaylistItem } from '../../redux/actions'
 
 class Playlist extends React.Component {
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(e) {
+    this.props.updateFieldValue('playlistName', e.target.value)
+  }
+
   render() {
 
     const trackArtists = (item) => {
@@ -52,6 +62,20 @@ class Playlist extends React.Component {
 
     return (
       <div className="playlist">
+        {this.props.playlist.size > 0 && (
+          <div className="playlist__header">
+            <div className="playlist__title">
+              <input type="text"
+                    value={this.props.playlistName}
+                    onChange={this.handleChange} />
+              <Edit size={15} color="#E5E7E8"></Edit>
+            </div>
+            <div className="playlist__export">
+              <Export></Export>
+            </div>
+          </div>
+        )}
+
         {this.props.playlist.map((item) => {
           return(
             <div key={item.get('id')}>
@@ -67,12 +91,14 @@ class Playlist extends React.Component {
 // Map reducer props
 const mapStateToProps = state => ({
   playlist: state.get('playlist'),
+  playlistName: state.get('playlistName'),
 })
 
 // Map reducer methods
 const mapDispatchToProps = dispatch => ({
   getSuggestionsRequest: (payload) => dispatch(getSuggestionsRequest(payload)),
   removePlaylistItem: (payload) => dispatch(removePlaylistItem(payload)),
+  updateFieldValue: (field, value) => dispatch(updateFieldValue(field, value)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)

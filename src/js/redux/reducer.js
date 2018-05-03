@@ -14,7 +14,7 @@ const initialState = fromJS({
   playlist: [],
   isGettingSuggestions: false,
   isCreatingPlaylist: false,
-  playlistName: '',
+  playlistName: 'Generated Playlist',
 })
 
 export const reducer = (state = initialState, action) => {

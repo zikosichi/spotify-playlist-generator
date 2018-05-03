@@ -2,17 +2,12 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { updateFieldValue, createPlaylistRequest } from '../../redux/actions'
+import { createPlaylistRequest } from '../../redux/actions'
 
 class Export extends React.Component {
   constructor() {
     super()
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange(e) {
-    this.props.updateFieldValue('playlistName', e.target.value)
   }
 
   handleSubmit() {
@@ -26,10 +21,7 @@ class Export extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <input type="text"
-               value={this.props.playlistName}
-               onChange={this.handleChange} />
+      <div>
         <button onClick={this.handleSubmit}>
           Export
         </button>
@@ -47,7 +39,6 @@ const mapStateToProps = state => ({
 
 // Map reducer methods
 const mapDispatchToProps = dispatch => ({
-  updateFieldValue: (field, value) => dispatch(updateFieldValue(field, value)),
   createPlaylistRequest: (payload) => dispatch(createPlaylistRequest(payload)),
 })
 

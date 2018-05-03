@@ -7,6 +7,27 @@
   box-shadow: 0 1px 1px 0 rgba($ts-dark, 0.16);
   background-color: $ts-white;
 
+  &__header {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid $ts-light-gray;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0;
+
+    input {
+      font-size: 18px;
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__export {
+    margin-left: auto;
+  }
+
   &__item {
     display: flex;
     align-items: center;

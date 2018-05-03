@@ -14,7 +14,6 @@ import { fetchUserRequest } from '../redux/actions'
 // Components
 import SearchBox from './SearchBox/SearchBox'
 import Playlist from './Playlist/Playlist'
-import Export from './Export/Export'
 
 // Assets
 import logoIcon from '../../assets/icons/play-button.svg'
@@ -59,7 +58,6 @@ class App extends React.Component {
         </header>
         <div className="container">
           <Playlist></Playlist>
-          <Export></Export>
         </div>
       </div>
     )
