@@ -4,20 +4,24 @@
   background-color: $ts-white;
   margin-top: 15px;
   border-radius: 7px;
-  overflow: hidden;
   box-shadow: 0 1px 1px 0 rgba($ts-dark, 0.16);
+  background-color: $ts-white;
 
   &__item {
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    cursor: pointer;
     animation: expand .3s forwards;
     transform-origin: top center;
-    background-color: $ts-white;
+    position: relative;
 
     &:hover {
       background-color: rgba($ts-light-gray, .1);
+
+      .playlist__item__action--remove {
+        transform: translateX(100%);
+        opacity: 1;
+      }
     }
 
     &__content {
@@ -66,6 +70,19 @@
       img {
         width: 20px;
         transition: .2s all;
+      }
+
+      &--remove {
+        opacity: 0;
+        transform: translateX(-5px);
+        position: absolute;
+        right: 0;
+        margin: 0;
+        top: 0;
+        width: 60px;
+        height: 100%;
+        color: $ts-gray;
+        transform: translateX(100%);
       }
 
       &:hover {

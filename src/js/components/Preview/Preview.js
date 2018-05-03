@@ -39,8 +39,8 @@ class Preview extends React.Component {
            onMouseLeave={this.handleTogglePlay}>
         {
           this.props.currentlyPlayedUrl === this.props.previewUrl ?
-          <StopCircle></StopCircle> :
-          <Play></Play>
+          <StopCircle size={20}></StopCircle> :
+          <Play size={20}></Play>
         }
       </div>
     )

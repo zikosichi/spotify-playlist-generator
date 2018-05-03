@@ -40,11 +40,11 @@ class Playlist extends React.Component {
           )}
           <button className="playlist__item__action playlist__item__action--magic"
                   onClick={() => this.props.getSuggestionsRequest(item)}>
-            <Radio></Radio>
+            <Radio size={20}></Radio>
           </button>
           <button className="playlist__item__action playlist__item__action--remove"
                   onClick={() => this.props.removePlaylistItem(item.get('id'))}>
-            <Trash></Trash>
+            <Trash size={20}></Trash>
           </button>
         </div>
       </div>

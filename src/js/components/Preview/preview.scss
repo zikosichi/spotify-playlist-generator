@@ -3,6 +3,7 @@
 
 .preview {
   display: inline-block;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.1);
