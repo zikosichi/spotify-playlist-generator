@@ -2,6 +2,7 @@
 
 body {
   @import './bs-overrides';
+  @import './tooltip';
 
   font-family: 'Quicksand', sans-serif;
   background: $ts-light;

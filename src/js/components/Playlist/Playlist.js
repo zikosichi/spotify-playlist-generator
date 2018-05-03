@@ -49,8 +49,9 @@ class Playlist extends React.Component {
               <Preview previewUrl={item.get('preview_url')}></Preview>
             </button>
           )}
-          <button className="playlist__item__action playlist__item__action--magic"
-                  onClick={() => this.props.getSuggestionsRequest(item)}>
+          <button className={`playlist__item__action playlist__item__action--magic ${this.props.playlist.size === 1 ? 'tooltip-visible' : ''}`}
+                  onClick={() => this.props.getSuggestionsRequest(item)}
+                  data-tooltip="Click here to expand">
             <Radio size={20}></Radio>
           </button>
           <button className="playlist__item__action playlist__item__action--remove"
