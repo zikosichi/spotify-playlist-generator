@@ -11,8 +11,10 @@
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    // transition: all .15s;
     cursor: pointer;
+    animation: expand .3s forwards;
+    transform-origin: top center;
+    background-color: $ts-white;
 
     &:hover {
       background-color: rgba($ts-light-gray, .1);
@@ -80,5 +82,25 @@
         }
       }
     }
+  }
+}
+
+@keyframes expand {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(100%)
+  }
+}
+
+@keyframes highlight {
+  from {
+    box-shadow: inset 4px 0 $ts-blue;
+  }
+
+  to {
+    box-shadow: none;
   }
 }

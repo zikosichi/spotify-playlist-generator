@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
+import { Play, StopCircle } from 'react-feather';
 
 // Actions
 import { updateFieldValue } from '../../redux/actions'
@@ -38,8 +39,8 @@ class Preview extends React.Component {
            onMouseLeave={this.handleTogglePlay}>
         {
           this.props.currentlyPlayedUrl === this.props.previewUrl ?
-          <i className="fa fa-stop preview__btn"></i> :
-          <i className="fa fa-play preview__btn"></i>
+          <StopCircle></StopCircle> :
+          <Play></Play>
         }
       </div>
     )

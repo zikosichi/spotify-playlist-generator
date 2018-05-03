@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import magic from '../../../assets/icons/magic-wand.svg'
+import { Trash, Radio } from 'react-feather';
 
 // Styles
 import './playlist.scss'
@@ -39,11 +40,11 @@ class Playlist extends React.Component {
           )}
           <button className="playlist__item__action playlist__item__action--magic"
                   onClick={() => this.props.getSuggestionsRequest(item)}>
-            <i className="fas fa-magic"></i>
+            <Radio></Radio>
           </button>
           <button className="playlist__item__action playlist__item__action--remove"
                   onClick={() => this.props.removePlaylistItem(item.get('id'))}>
-            <i className="far fa-trash-alt"></i>
+            <Trash></Trash>
           </button>
         </div>
       </div>
