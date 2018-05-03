@@ -12,14 +12,14 @@
     line-height: 18px;
     transition: all .3s;
     display: inline-block;
-    box-shadow: 0 1px 1px rgba($ts-dark, .1);
+    box-shadow: 0 1px 1px rgba($ts-green, .1);
 
     &:hover {
       background-color: $ts-green + 5;
       color: $ts-white;
       text-decoration: none;
       transform: translateY(-2px);
-      box-shadow: 0 4px 5px rgba($ts-dark, .1);
+      box-shadow: 0 4px 7px rgba($ts-green, .2);
     }
   }
 }
