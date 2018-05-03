@@ -80,7 +80,7 @@ class Playlist extends React.Component {
 
         <div className="info">
           <div className="row">
-            <div className="col info__col">
+            <div className="col-sm-4 col-12 info__col">
               <img src={singer}
                    className="info__img"/>
               <p className="info__text">
@@ -88,7 +88,7 @@ class Playlist extends React.Component {
                 Search and Select your favourite songs and artists
               </p>
             </div>
-            <div className="col info__col">
+            <div className="col-sm-4 col-12 info__col">
               <img src={radio}
                    className="info__img"/>
               <p className="info__text">
@@ -96,7 +96,7 @@ class Playlist extends React.Component {
                 Clicking this magic button & 5 similar tracks will be added to your playlist
               </p>
             </div>
-            <div className="col info__col">
+            <div className="col-sm-4 col-12 info__col">
               <img src={exportIcon}
                    className="info__img"/>
               <p className="info__text">

@@ -9,9 +9,9 @@ body {
   color: $ts-dark;
   padding-bottom: 50px;
 
-  @media screen and (max-width: $break-md) {
-    padding-top: 15px;
-  }
+  // @media screen and (max-width: $break-md) {
+  //   padding-top: 15px;
+  // }
 }
 
 a {

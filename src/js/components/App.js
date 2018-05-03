@@ -47,14 +47,19 @@ class App extends React.Component {
       <div className="app">
         <header className="app__header">
           <div className="container app__header__container">
-            <div className="app__topbar">
-              {logo}
-              {user}
+            <div className="app__topbar row">
+              <div className="col">
+                {logo}
+              </div>
+              <div className="col-12 col-sm-auto">
+                {user}
+              </div>
             </div>
             <div className="search-box">
               <SearchBox></SearchBox>
             </div>
           </div>
+          <div className="app__header__pattern"></div>
         </header>
         <div className="container">
           <Playlist></Playlist>
