@@ -65,10 +65,11 @@ class Playlist extends React.Component {
         {this.props.playlist.size > 0 && (
           <div className="playlist__header">
             <div className="playlist__title">
-              <input type="text"
-                    value={this.props.playlistName}
-                    onChange={this.handleChange} />
               <Edit size={15} color="#E5E7E8"></Edit>
+              <input type="text"
+                     className="ml-2"
+                     value={this.props.playlistName}
+                     onChange={this.handleChange} />
             </div>
             <div className="playlist__export">
               <Export></Export>
