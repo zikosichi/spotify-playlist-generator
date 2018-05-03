@@ -35,9 +35,11 @@ class Playlist extends React.Component {
       <div className={`playlist__item playlist__item--${item.get('type')}`}>
         <ResultAvatar item={item.toJS()}/>
         <div className="playlist__item__content">
-          <h3 className="playlist__item__content__title">
+          <a className="playlist__item__content__title"
+             target="_blank"
+             href={item.getIn(['external_urls', 'spotify'])}>
             {item.get('name')}
-          </h3>
+          </a>
           <p className="playlist__item__content__sub-title">
             {item.get('type') === 'track' ? trackArtists(item) : 'Artist'}
           </p>
