@@ -20,8 +20,8 @@
 
   &__header {
     padding-bottom: 60px;
-    background-color: #1db954;
-    background: linear-gradient(-30deg, #1db954, #1db954 + 30);
+    background-color: $ts-dark;
+    background: linear-gradient(-30deg, $ts-dark, $ts-dark + 50);
   }
 
   &__user {
