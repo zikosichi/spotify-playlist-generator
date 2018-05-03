@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { Plus } from 'react-feather';
 
 // Assets
 import searchIcon from '../../../../assets/icons/search-icon.svg';
@@ -54,6 +55,10 @@ class SearchInput extends React.Component {
   }
 
   render() {
+    const icon = this.props.playlist.size > 0 ?
+      <Plus></Plus> :
+      <img src={searchIcon} />
+
     const placeholder = this.props.playlist.size > 0 ?
       'Add more songs or artists' :
       'Search for a song or artist'
@@ -64,7 +69,7 @@ class SearchInput extends React.Component {
           {
             this.props.isFetching ?
               <i className="fa fa-spinner fa-spin"></i> :
-              <img src={searchIcon} />
+              icon
           }
         </span>
       </div>
