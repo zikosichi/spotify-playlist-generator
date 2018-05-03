@@ -54,6 +54,10 @@ class SearchInput extends React.Component {
   }
 
   render() {
+    const placeholder = this.props.playlist.size > 0 ?
+      'Add more songs or artists' :
+      'Search for a song or artist'
+
     const loupeAddon = (
       <div className="input-group-prepend">
         <span className="input-group-text">
@@ -82,7 +86,7 @@ class SearchInput extends React.Component {
           {loupeAddon}
 
           <input type="text"
-                 placeholder="Search for a song or artist"
+                 placeholder={placeholder}
                  className="form-control search-bar__input"
                  value={this.props.searchString}
                  onChange={this.handleChange}
@@ -106,6 +110,7 @@ SearchInput.propTypes = {
 const mapStateToProps = state => ({
   searchString: state.get('searchString'),
   isFetching: state.get('isFetching'),
+  playlist: state.get('playlist'),
 })
 
 const mapDispatchToProps = dispatch => ({

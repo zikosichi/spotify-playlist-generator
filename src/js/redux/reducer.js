@@ -14,7 +14,7 @@ const initialState = fromJS({
   playlist: [],
   isGettingSuggestions: false,
   isCreatingPlaylist: false,
-  playlistName: 'Generated Playlist',
+  playlistName: 'Generated Playlist Name',
   createdPlaylist: null,
 })
 
@@ -116,8 +116,6 @@ export const reducer = (state = initialState, action) => {
       return state.set('isCreatingPlaylist', true)
 
     case actionTypes.CREATE_PLAYLIST_SUCCESS:
-    console.log(action.payload);
-    
       return state.set('isCreatingPlaylist', false)
                   .set('playlistName', initialState.get('playlistName'))
                   .set('createdPlaylist', action.payload)
