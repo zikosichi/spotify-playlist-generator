@@ -2,7 +2,7 @@
   "name": "ts-assessment",
   "version": "0.0.1",
   "description": "Spotify Playlist Generator",
-  "homepage": "http://zikosichi.github.io/frontend-assessment",
+  "homepage": "http://zikosichi.github.io/spotify-playlist-generator",
   "scripts": {
     "start": "webpack-dev-server --hot",
     "build": "webpack -p",
